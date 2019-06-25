@@ -1,22 +1,20 @@
-public sealed class SystemInfo
+using StorybrewCommon.Scripting;
+using StorybrewCommon.Storyboarding;
+using System.IO;
+
+public class SystemInfo
 {
-    private SystemInfo(){}
-    public static SystemInfo _instance = null;
+    private static SystemInfo _insance;
     public static SystemInfo Instance
     {
-        get 
+        get
         {
-            if(_instance == null)
+            if(_insance == null)
             {
-                _instance = new SystemInfo();
+                _insance = new SystemInfo();
             }
-            return _instance;
+            return _insance;
         }
     }
-
-    //GLOBAL VARIABLES
-    //##############################
-
-    public string MAPSETPATH {get; set;}
-
+    public string MAPSETPATH;
 }

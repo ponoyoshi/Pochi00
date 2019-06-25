@@ -54,7 +54,18 @@
   <ItemGroup>
     <Compile Include="BackgroundManager.cs" />
     <Compile Include="DebugTimestamps.cs" />
+    <Compile Include="FullSbPart07.cs" />
+    <Compile Include="FullSbPart12.cs" />
+    <Compile Include="FullSbPart16.cs" />
+    <Compile Include="FullSbPart27.cs" />
+    <Compile Include="FullSbPart30.cs" />
+    <Compile Include="FullSbPart32.cs" />
+    <Compile Include="HighlightManager.cs" />
+    <Compile Include="Introduction.cs" />
+    <Compile Include="scriptslibrary/ParticleManager.cs" />
+    <Compile Include="scriptslibrary/ShapeManager.cs" />
     <Compile Include="scriptslibrary/SystemInfo.cs" />
+    <Compile Include="scriptslibrary/TextManager.cs" />
   </ItemGroup>
   <ItemGroup />
 </Project>
