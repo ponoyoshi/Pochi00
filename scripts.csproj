@@ -64,7 +64,6 @@
     <Compile Include="Introduction.cs" />
     <Compile Include="scriptslibrary/ParticleManager.cs" />
     <Compile Include="scriptslibrary/ShapeManager.cs" />
-    <Compile Include="scriptslibrary/SystemInfo.cs" />
     <Compile Include="scriptslibrary/TextManager.cs" />
   </ItemGroup>
   <ItemGroup />

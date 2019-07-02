@@ -1,0 +1,2 @@
+StartTime,EndTime,BackgroundID (0 - x),BackgroundType,MovementType
+0,10000,0,BASE,LEFT
