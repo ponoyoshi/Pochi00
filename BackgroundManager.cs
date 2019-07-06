@@ -10,9 +10,11 @@ namespace StorybrewScripts
     {
         private Background[] backgrounds;
         private string dataPath;
+        private int backgroundFormat = 1040;
         public override void Generate()
         {   
-            dataPath = ProjectPath + "/SBDATA - BGDATA.csv";
+            RemoveBaseBackground();
+            dataPath = ProjectPath + "/backgroundData.csv";
             AddDependency(dataPath);
 		    SetLibrary();
             GenerateBackgrounds();
@@ -59,6 +61,9 @@ namespace StorybrewScripts
                 isLayered = true;
                 break;
             }
+            if(sprite == null)
+                sprite = GetLayer("DEBUG").CreateSprite("sb/DEBUG/nf.png");
+
             switch(effect)
             {
                 case "RIGHT":
@@ -84,6 +89,14 @@ namespace StorybrewScripts
                 case "SCALE_DOWN":
                 ScaleBackground(sprite, startTime, endTime, ScaleType.DOWN, isLayered);
                 break;
+
+                case "FADE_IN":
+                FadeBackground(sprite, startTime, endTime, FadeType.IN, isLayered);
+                break;
+
+                case "FADE_OUT":
+                FadeBackground(sprite, startTime, endTime, FadeType.OUT, isLayered);
+                break;
             }
         }
         private void MoveBackground(OsbSprite sprite, int startTime, int endTime, Direction direction, bool isLayered)
@@ -92,8 +105,7 @@ namespace StorybrewScripts
             {
                 switch(direction)
                 {
-                    case Direction.RIGHT:
-                    
+                    case Direction.RIGHT:     
                     break;
 
                     case Direction.DOWN:
@@ -111,34 +123,76 @@ namespace StorybrewScripts
                 switch(direction)
                 {
                     case Direction.RIGHT:
-                    sprite.Move(OsbEasing.InOutSine, startTime, endTime, 310, 240, 330, 240);
-                    sprite.Fade(OsbEasing.InSine, startTime, startTime + 1000, 0, 1);
-                    sprite.Fade(OsbEasing.OutSine, endTime, endTime + 1000, 1, 0);
+                    sprite.Move(startTime, endTime, 310, 240, 330, 240);
                     break;
 
                     case Direction.DOWN:
-                    sprite.Move(OsbEasing.InOutSine, startTime, endTime, 320, 230, 320, 250);
-                    sprite.Fade(OsbEasing.InSine, startTime, startTime + 1000, 0, 1);
-                    sprite.Fade(OsbEasing.OutSine, endTime, endTime + 1000, 1, 0);
+                    sprite.Move(startTime, endTime, 320, 230, 320, 250);
                     break;
 
                     case Direction.LEFT:
-                    sprite.Move(OsbEasing.InOutSine, startTime, endTime, 330, 240, 310, 240);
-                    sprite.Fade(OsbEasing.InSine, startTime, startTime + 1000, 0, 1);
-                    sprite.Fade(OsbEasing.OutSine, endTime, endTime + 1000, 1, 0);
+                    sprite.Move(startTime, endTime, 330, 240, 310, 240);
                     break;
 
                     case Direction.TOP:
-                    sprite.Move(OsbEasing.InOutSine, startTime, endTime, 320, 250, 320, 230);
-                    sprite.Fade(OsbEasing.InSine, startTime, startTime + 1000, 0, 1);
-                    sprite.Fade(OsbEasing.OutSine, endTime, endTime + 1000, 1, 0);
+                    sprite.Move(startTime, endTime, 320, 250, 320, 230);
                     break;
                 }
             }
         }
         private void ScaleBackground(OsbSprite sprite, int startTime, int endTime, ScaleType scaleType, bool isLayered)
         {
+            if(isLayered)
+            {
+                switch(scaleType)
+                {
+                    case ScaleType.UP:
+                    break;
 
+                    case ScaleType.DOWN:
+                    break;
+                }
+            }
+            else
+            {
+                switch(scaleType)
+                {
+                    case ScaleType.UP:
+                    sprite.Scale(OsbEasing.OutSine, startTime, endTime, 480.0/backgroundFormat, 480.0/1000);
+                    break;
+
+                    case ScaleType.DOWN:
+                    sprite.Scale(OsbEasing.InSine, startTime, endTime, 480.0/1000, 480.0/backgroundFormat);
+                    break;
+                }
+            }
+        }
+        private void FadeBackground(OsbSprite sprite, int startTime, int endTime, FadeType fadeType, bool isLayered)
+        {
+            if(isLayered)
+            {
+                switch(fadeType)
+                {
+                    case FadeType.IN:
+                    break;
+
+                    case FadeType.OUT:
+                    break;
+                }
+            }
+            else
+            {
+                switch(fadeType)
+                {
+                    case FadeType.IN:
+                    sprite.Fade(OsbEasing.InSine, startTime, endTime, 0, 1);
+                    break;
+
+                    case FadeType.OUT:
+                    sprite.Fade(OsbEasing.OutSine, startTime, endTime, 1, 0);
+                    break;
+                }
+            }            
         }
         private void SetLibrary()
         {          
@@ -159,19 +213,22 @@ namespace StorybrewScripts
                     {
                         case "b.jpg":
                         background.baseSprite = GetLayer("BASE").CreateSprite(filePath);
-                        background.baseSprite.Scale(0, 480.0/1050);
+                        background.baseSprite.Scale(0, 480.0/backgroundFormat);
+                        background.baseSprite.Fade(0, 0);
                         Log($"> Base background set!");
                         break;
 
                         case "f.jpg":
                         background.spriteBlur = GetLayer("BLUR").CreateSprite(filePath);
-                        background.spriteBlur.Scale(0, 480.0/1050);
+                        background.spriteBlur.Scale(0, 480.0/backgroundFormat);
+                        background.spriteBlur.Fade(0, 0);
                         Log($"> Blur background set!");
                         break;
 
                         case "w.jpg":
                         background.spriteBlackWhite = GetLayer("BLACKWHITE").CreateSprite(filePath);
-                        background.spriteBlackWhite.Scale(0, 480.0/1050);
+                        background.spriteBlackWhite.Scale(0, 480.0/backgroundFormat);
+                        background.spriteBlackWhite.Fade(0, 0);
                         Log($"> Black&White background set!");
                         break;
                     }   
@@ -182,8 +239,10 @@ namespace StorybrewScripts
                     }    
                 }
                 foreach(var sprite in background.layeredSprites)
+                {
                     sprite.Scale(0, 480.0/1080);
-
+                    sprite.Fade(0, 0);
+                }        
                 Log("");
                 backgrounds[i] = background;
                 i++;
@@ -210,5 +269,12 @@ namespace StorybrewScripts
             UP,
             DOWN
         }
+        private enum FadeType
+        {
+            IN,
+            OUT,
+        }
+        private void RemoveBaseBackground()
+            => GetLayer("").CreateSprite("bg.jpg").Fade(0,0);
     }
 }
