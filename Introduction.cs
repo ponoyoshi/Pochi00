@@ -18,11 +18,27 @@ namespace StorybrewScripts
         public override void Generate()
         {
             
-            ShapeManager shapeManager = new ShapeManager(StoryboardObjectGenerator.Current);
-		    shapeManager.GenerateEmptySquare(new Vector2(320, 240), 11, 1345, 0, 200, false, OsbEasing.OutExpo);
+            ShapeManager shapeManager = new ShapeManager(this);
+		    shapeManager.GenerateEmptySquare(new Vector2(320, 240), 11, 1345, 0, 100, false, OsbEasing.OutExpo);
 		    shapeManager.GenerateEmptySquare(new Vector2(320, 240), 2678, 5845, 500, -1000, true, OsbEasing.InExpo);
-            new ColorBackground(11, 6678, new Color4(.1f, .1f, .1f, 1), this);
-            
+            shapeManager.GenerateEmptySquare(new Vector2(320, 240), 5345, 5845, 0, 300, false, OsbEasing.OutExpo);
+            shapeManager.GenerateEmptySquare(new Vector2(320, 240), 5511, 5845, 0, 200, false, OsbEasing.OutExpo);
+            shapeManager.GenerateEmptySquare(new Vector2(320, 240), 5678, 5845, 0, 100, false, OsbEasing.OutExpo);
+            new ColorBackground(11, 6678, new Color4(.08f, .05f, .07f, 1), this);
+		    
+            var slicedCircle = GetLayer("").CreateSprite("sb/cs.png");
+            slicedCircle.Fade(11, 2678, 0, 0.3);
+            slicedCircle.Rotate(OsbEasing.OutExpo, 11, 2678, 0, Math.PI*2);
+            slicedCircle.Rotate(OsbEasing.InExpo, 3345, 5345, Math.PI*2, -Math.PI*2);
+            slicedCircle.Scale(OsbEasing.OutExpo, 11, 2678, 0, 0.7);
+            slicedCircle.Scale(OsbEasing.InExpo, 3345, 5345, 0.7, 2);
+
+            var dotCircle = GetLayer("").CreateSprite("sb/cs.png");
+            slicedCircle.Fade(11, 2678, 0, 0.3);
+            slicedCircle.Rotate(OsbEasing.OutExpo, 11, 2678, 0, Math.PI*2);
+            slicedCircle.Rotate(OsbEasing.InExpo, 3345, 5345, Math.PI*2, -Math.PI*2);
+            slicedCircle.Scale(OsbEasing.OutExpo, 11, 2678, 0, 0.7);
+            slicedCircle.Scale(OsbEasing.InExpo, 3345, 5345, 0.7, 2);
         }
     }
 }
