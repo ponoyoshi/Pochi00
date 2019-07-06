@@ -58,6 +58,7 @@ namespace StorybrewScripts
 
                 case "LAYERED":
                 layerSprites = background.layeredSprites;
+                sprite = background.baseSprite;
                 isLayered = true;
                 break;
             }
@@ -67,45 +68,47 @@ namespace StorybrewScripts
             switch(effect)
             {
                 case "RIGHT":
-                MoveBackground(sprite, startTime, endTime, Direction.RIGHT, isLayered);
+                MoveBackground(sprite, startTime, endTime, Direction.RIGHT, isLayered, layerSprites);
                 break;
 
                 case "DOWN":
-                MoveBackground(sprite, startTime, endTime, Direction.DOWN, isLayered);
+                MoveBackground(sprite, startTime, endTime, Direction.DOWN, isLayered, layerSprites);
                 break;
 
                 case "LEFT":
-                MoveBackground(sprite, startTime, endTime, Direction.LEFT, isLayered);
+                MoveBackground(sprite, startTime, endTime, Direction.LEFT, isLayered, layerSprites);
                 break;
 
                 case "TOP":
-                MoveBackground(sprite, startTime, endTime, Direction.TOP, isLayered);
+                MoveBackground(sprite, startTime, endTime, Direction.TOP, isLayered, layerSprites);
                 break;
 
                 case "SCALE_UP":
-                ScaleBackground(sprite, startTime, endTime, ScaleType.UP, isLayered);
+                ScaleBackground(sprite, startTime, endTime, ScaleType.UP, isLayered, layerSprites);
                 break;
 
                 case "SCALE_DOWN":
-                ScaleBackground(sprite, startTime, endTime, ScaleType.DOWN, isLayered);
+                ScaleBackground(sprite, startTime, endTime, ScaleType.DOWN, isLayered, layerSprites);
                 break;
 
                 case "FADE_IN":
-                FadeBackground(sprite, startTime, endTime, FadeType.IN, isLayered);
+                FadeBackground(sprite, startTime, endTime, FadeType.IN, isLayered, layerSprites);
                 break;
 
                 case "FADE_OUT":
-                FadeBackground(sprite, startTime, endTime, FadeType.OUT, isLayered);
+                FadeBackground(sprite, startTime, endTime, FadeType.OUT, isLayered, layerSprites);
                 break;
             }
         }
-        private void MoveBackground(OsbSprite sprite, int startTime, int endTime, Direction direction, bool isLayered)
+        private void MoveBackground(OsbSprite sprite, int startTime, int endTime, Direction direction, bool isLayered, List<OsbSprite> sprites)
         {
             if(isLayered)
             {
+                double moveParameter = 10;
                 switch(direction)
                 {
-                    case Direction.RIGHT:     
+                    case Direction.RIGHT:
+                    
                     break;
 
                     case Direction.DOWN:
@@ -115,6 +118,11 @@ namespace StorybrewScripts
                     break;
 
                     case Direction.TOP:
+                    foreach(var layer in sprites)
+                    {
+                        layer.Move(OsbEasing.OutExpo, startTime, endTime, 320, 240 - moveParameter, 320, 240 + moveParameter);
+                        moveParameter += 4;
+                    }
                     break;
                 }
             }
@@ -140,7 +148,7 @@ namespace StorybrewScripts
                 }
             }
         }
-        private void ScaleBackground(OsbSprite sprite, int startTime, int endTime, ScaleType scaleType, bool isLayered)
+        private void ScaleBackground(OsbSprite sprite, int startTime, int endTime, ScaleType scaleType, bool isLayered, List<OsbSprite> sprites)
         {
             if(isLayered)
             {
@@ -167,16 +175,28 @@ namespace StorybrewScripts
                 }
             }
         }
-        private void FadeBackground(OsbSprite sprite, int startTime, int endTime, FadeType fadeType, bool isLayered)
+        private void FadeBackground(OsbSprite sprite, int startTime, int endTime, FadeType fadeType, bool isLayered, List<OsbSprite> sprites)
         {
             if(isLayered)
             {
+                int i = 0;
                 switch(fadeType)
-                {
+                {          
                     case FadeType.IN:
+                    foreach(var layer in sprites)
+                    {
+                        layer.Fade(OsbEasing.InSine, startTime + (i * 300), endTime + (i * 300), 0, 1);
+                        i++;
+                    }
+                        
                     break;
 
                     case FadeType.OUT:
+                    foreach(var layer in sprites)
+                    {
+                        layer.Fade(OsbEasing.OutSine, startTime + (i * 300), endTime + (i * 300), 1, 0);
+                        i++;
+                    }  
                     break;
                 }
             }
@@ -199,6 +219,7 @@ namespace StorybrewScripts
             string path = MapsetPath + "/sb/b";
             Background[] backgrounds = new Background[Directory.GetDirectories(path).Length];
             int i = 0;     
+            int scale = 1050;
             foreach(var directoryFile in Directory.GetDirectories(path))
             {
                 Background background = new Background();
@@ -212,7 +233,7 @@ namespace StorybrewScripts
                     switch(spriteName)
                     {
                         case "b.jpg":
-                        background.baseSprite = GetLayer("BASE").CreateSprite(filePath);
+                        background.baseSprite = GetLayer("").CreateSprite(filePath);
                         background.baseSprite.Scale(0, 480.0/backgroundFormat);
                         background.baseSprite.Fade(0, 0);
                         Log($"> Base background set!");
@@ -226,7 +247,7 @@ namespace StorybrewScripts
                         break;
 
                         case "w.jpg":
-                        background.spriteBlackWhite = GetLayer("BLACKWHITE").CreateSprite(filePath);
+                        background.spriteBlackWhite = GetLayer("").CreateSprite(filePath);
                         background.spriteBlackWhite.Scale(0, 480.0/backgroundFormat);
                         background.spriteBlackWhite.Fade(0, 0);
                         Log($"> Black&White background set!");
@@ -234,14 +255,15 @@ namespace StorybrewScripts
                     }   
                     if(spriteName[0] == 'l')
                     {
-                        background.layeredSprites.Add(GetLayer("LAYERS").CreateSprite(filePath));
+                        background.layeredSprites.Add(GetLayer("").CreateSprite(filePath));
                         Log($"+ Added layer {spriteName}");   
                     }    
                 }
                 foreach(var sprite in background.layeredSprites)
                 {
-                    sprite.Scale(0, 480.0/1080);
+                    sprite.Scale(0, 480.0/1050);
                     sprite.Fade(0, 0);
+                    scale -= 50;
                 }        
                 Log("");
                 backgrounds[i] = background;
