@@ -37,16 +37,7 @@ namespace StorybrewScripts
 
                 var sprite = hitobjectLayer.CreateSprite(SpritePath, OsbOrigin.Centre, hitobject.Position);
                 sprite.Additive(hitobject.StartTime, hitobject.EndTime + FadeTime);
-
-                if (UseHitobjectColor)
-                {
-                    sprite.Color(hitobject.StartTime, hitobject.Color);
-                }
-
-                else
-                {
-                    sprite.Color(hitobject.StartTime, Color4.White);
-                }
+                sprite.Color(hitobject.StartTime, UseHitobjectColor ? hitobject.Color : Color4.White);
 
                 if (hitobject is OsuSlider)
                 {
