@@ -227,6 +227,7 @@ namespace StorybrewScripts
             {
                 Background background = new Background();
                 Log($"| DIRECTORY {i}");
+                int spriteNumber = 0;
                 foreach(string fileName in Directory.GetFiles(directoryFile))
                 {
                     string filePath = fileName.Split(new string[] {"mia/"}, StringSplitOptions.None)[1];
@@ -258,7 +259,8 @@ namespace StorybrewScripts
                     }   
                     if(spriteName[0] == 'l')
                     {
-                        background.layeredSprites.Add(GetLayer("").CreateSprite(filePath));
+                        background.layeredSprites.Add(GetLayer(spriteNumber.ToString()).CreateSprite(filePath));
+                        spriteNumber++;
                         Log($"+ Added layer {spriteName}");   
                     }    
                 }
