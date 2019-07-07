@@ -63,6 +63,7 @@
     <Compile Include="HighlightManager.cs" />
     <Compile Include="Introduction.cs" />
     <Compile Include="scriptslibrary/ColorBackground.cs" />
+    <Compile Include="scriptslibrary/FontLibrary.cs" />
     <Compile Include="scriptslibrary/ParticleManager.cs" />
     <Compile Include="scriptslibrary/ShapeManager.cs" />
     <Compile Include="scriptslibrary/TextManager.cs" />

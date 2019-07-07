@@ -18,15 +18,19 @@ namespace StorybrewScripts
     public class DebugTimestamps : StoryboardObjectGenerator
     {
         [Configurable] public bool reload;
-
         [Configurable] public bool copySprites;
+        [Configurable] public bool generateSections;
         int oldTime = 11;
         FontGenerator font;
         public override void Generate()
         {
-            font = SetFont();
+            FontLibrary fontLibrary = new FontLibrary(this);
+
+            font = fontLibrary.GetFont("Regular");
             ReloadBackgrounds();
-		    GenerateSections();
+
+            if(generateSections)
+		        GenerateSections();
             
             if(copySprites)
             {
@@ -51,16 +55,6 @@ namespace StorybrewScripts
             using(var client = new WebClient())
                 client.DownloadFile("https://docs.google.com/spreadsheets/d/1KcOHDJRSbK11UI7uwShiVAZtcgbXl5fSJwv1iZSrqWo/export?gid=796801173&format=csv", ProjectPath + "/backgroundData.csv");
         }
-        private FontGenerator SetFont()
-        {
-            var font = LoadFont("sb/DEBUG/f", new FontDescription{
-                FontPath = "Verdana",
-                FontSize = 100,
-                FontStyle = FontStyle.Regular,
-                Color = Color4.White
-            });
-            return font;
-        }
         private void GenerateSections()
         {
             int ID = 0;
@@ -74,9 +68,9 @@ namespace StorybrewScripts
         private void GenerateSection(int startTime, int endTime, int ID)
         {
             var texture = font.GetTexture($"Section - [{ID}]");
-            var sprite = GetLayer("DEBUG").CreateSprite(texture.Path, OsbOrigin.CentreLeft, new Vector2(-100, 430));
+            var sprite = GetLayer("DEBUG").CreateSprite(texture.Path, OsbOrigin.CentreLeft, new Vector2(-100, 460));
             sprite.Fade(startTime, endTime, 1, 1);
-            sprite.Scale(startTime, 0.1);
+            sprite.Scale(startTime, 0.2);
         }
         public void CopyFiles(DirectoryInfo source, DirectoryInfo destination)
         {

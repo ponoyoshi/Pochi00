@@ -28,7 +28,7 @@ public class ShapeManager
             double startBorderScale = Math.Sqrt((startScale * startScale) + (startScale * startScale));
             double endBorderScale = Math.Sqrt((endScale * endScale) + (endScale * endScale));
 
-            var sprite = generator.GetLayer("Particles").CreateSprite("sb/p.png", OsbOrigin.BottomCentre, startPosition);
+            var sprite = generator.GetLayer("SHAPES").CreateSprite("sb/p.png", OsbOrigin.BottomCentre, startPosition);
             sprite.Fade(easing, startTime, endTime, 1, 1);
             sprite.ScaleVec(easing, startTime, endTime, upScale ? 0 : 50, startBorderScale + (upScale ? 0 : 25), upScale ? 50 : 0, endBorderScale + (upScale ? 25 : 0));
             sprite.Rotate(startTime, angle - Math.PI/4);
