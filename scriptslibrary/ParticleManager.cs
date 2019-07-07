@@ -72,4 +72,29 @@ public class ParticleManager
             }
         }
     }
+    public void GenerateCircleParticles(int startMove, int startTime, int endTime, int endMove)
+    {
+        for(int i = 0; i < 200; i++)
+        {
+            var angle = generator.Random(0, Math.PI*2);
+            var radius = generator.Random(200, 600);
+
+            var startPosition = new Vector2(
+                (float)(320 + Math.Cos(angle) * 500),
+                (float)(240 + Math.Sin(angle) * 500)
+            );
+
+            var endPosition = new Vector2(
+                (float)(320 + Math.Cos(angle) * radius),
+                (float)(240 + Math.Sin(angle) * radius)
+            );
+
+            var sprite = generator.GetLayer("PARTICLES").CreateSprite("sb/d.png", OsbOrigin.Centre, startPosition);
+            sprite.Move(OsbEasing.OutBack, startMove, startTime, startPosition, endPosition);
+            sprite.Move(OsbEasing.InBack, endTime, endMove, endPosition, startPosition);
+            sprite.Fade(startMove, startTime, 0, 1);
+            sprite.Fade(endTime, endMove, 1, 0);
+            sprite.Scale(startMove, radius*0.00005);
+        }
+    }
 }

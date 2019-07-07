@@ -24,6 +24,16 @@ namespace StorybrewScripts
             shapeManager.GenerateEmptySquare(new Vector2(320, 240), 5345, 5845, 0, 300, false, OsbEasing.OutExpo);
             shapeManager.GenerateEmptySquare(new Vector2(320, 240), 5511, 5845, 0, 200, false, OsbEasing.OutExpo);
             shapeManager.GenerateEmptySquare(new Vector2(320, 240), 5678, 5845, 0, 100, false, OsbEasing.OutExpo);
+            shapeManager.GenerateEmptySquare(new Vector2(320, 240), 28011, 29345, 0, 300, false, OsbEasing.OutExpo);
+            shapeManager.GenerateEmptySquare(new Vector2(320, 240), 28095, 29345, 0, 300, false, OsbEasing.OutExpo);
+
+            shapeManager.GenerateEmptySquare(new Vector2(320, 240), 80011, 81345, 0, 300, false, OsbEasing.OutExpo);
+            shapeManager.GenerateEmptySquare(new Vector2(320, 240), 80178, 81345, 0, 290, false, OsbEasing.OutExpo);
+            shapeManager.GenerateEmptySquare(new Vector2(320, 240), 80345, 81345, 0, 280, false, OsbEasing.OutExpo);
+            shapeManager.GenerateEmptySquare(new Vector2(320, 240), 80511, 81345, 0, 270, false, OsbEasing.OutExpo);
+            shapeManager.GenerateEmptySquare(new Vector2(320, 240), 80678, 81345, 0, 260, false, OsbEasing.OutExpo);
+            shapeManager.GenerateEmptySquare(new Vector2(320, 240), 81345, 82678, 0, 400, false, OsbEasing.OutExpo);
+
             
             FlatBackground flatBackground = new FlatBackground(this);
             flatBackground.GenerateGradientBackground(11, 6678, new Color4(.1f, 0.04f, 0.1f, 1), Color4.Black);
@@ -31,7 +41,8 @@ namespace StorybrewScripts
             ParticleManager particleManager = new ParticleManager(this);
             particleManager.GenerateFairy(11, new Vector2(320, 240));
             particleManager.GenerateFog(30011, 70678, 320, 50, 20, "FOGBACK");
-            particleManager.GenerateFog(30011, 70678, 400, 50, 20, "FOGFRONT");
+            particleManager.GenerateFog(30011, 70678, 480, 50, 20, "FOGFRONT");
+            particleManager.GenerateFog(81345, 102678, 320, 100, 50, "FOGFRONT");
 
             var slicedCircle = GetLayer("").CreateSprite("sb/cs.png");
             slicedCircle.Fade(11, 2678, 0, 0.3);
@@ -49,6 +60,11 @@ namespace StorybrewScripts
 
             TextManager textManager = new TextManager(this);
             textManager.GenerateTextVerticlalLetter("A_HISA", 11, 4011, new Vector2(320, 240), 0.2f, "Bold");
+
+            flatBackground.GenerateFlash(70678, 5000);
+            flatBackground.GenerateGradientBackground(70678, 81345, new Color4(.05f, 0.1f, 0.2f, 1), Color4.Black);
+            
+            particleManager.GenerateCircleParticles(70678, 74678, 80011, 81345);
 
         }
     }

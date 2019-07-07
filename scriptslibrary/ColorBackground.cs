@@ -16,6 +16,13 @@ public class FlatBackground
         sprite.Fade(endTime, endTime + 1000, 1, 0);
         sprite.Color(startTime, color);
     }
+    public void GenerateFlash(int startTime, int duration)
+    {
+        var sprite = generator.GetLayer("BACKGROUND").CreateSprite("sb/p.png");
+        sprite.ScaleVec(startTime, 854, 480);
+        sprite.Fade(startTime, startTime + duration, 1, 0);
+        sprite.Additive(startTime, startTime + duration);
+    }
     public void GenerateGradientBackground(int startTime, int endTime, Color4 color1, Color4 color2)
     {
         var background = generator.GetLayer("BACKGROUND").CreateSprite("sb/p.png");

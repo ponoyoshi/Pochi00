@@ -24,11 +24,17 @@ namespace StorybrewScripts
         {
             double beat = Beatmap.GetTimingPointAt(11).BeatDuration;
 		    GenerateClock();
-            ShowClock(6678, 28095, 70678, 72011, 0.2f);
+            ShowClock(6678, 28095, 92011, 92345, 0.2f);
             SetClockSpeed(6678, 48011, beat*4);
             SetClockSpeed(49345, 70678, beat*2);
             ModifyScale(6761, 28011, 250);
             ModifyScale(28095, 33345, 200);
+            ModifyScale(70678, 80011, 150);
+            SetClockSpeed(70678, 81345, beat*4);
+            ModifyScale(80011, 81345, 200);
+            SetClockSpeed(81345, 92011, beat);
+
+
         }
         private void GenerateClock()
         {
@@ -108,6 +114,8 @@ namespace StorybrewScripts
                 );
 
                 cadrant[i].Move(OsbEasing.OutSine, startTime, endTime, cadrant[i].PositionAt(startTime), newPosition);
+                cadrant[i].ScaleVec(OsbEasing.OutSine, startTime, endTime, cadrant[i].ScaleAt(startTime).X, cadrant[i].ScaleAt(startTime).Y, 1, scale/8);
+
                 angle += (Math.PI*2)/60;
             }
             littleHand.ScaleVec(OsbEasing.OutSine, startTime, endTime, littleHand.ScaleAt(startTime).X, littleHand.ScaleAt(startTime).Y, scale*0.0018, scale*0.0018);

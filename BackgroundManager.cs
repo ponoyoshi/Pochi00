@@ -197,7 +197,7 @@ namespace StorybrewScripts
                     case FadeType.OUT:
                     foreach(var layer in sprites)
                     {
-                        layer.Fade(OsbEasing.OutSine, startTime + (i * 300), endTime + (i * 300), 1, 0);
+                        layer.Fade(OsbEasing.OutSine, startTime, startTime, 1, 0);
                         i++;
                     }  
                     break;
@@ -240,6 +240,7 @@ namespace StorybrewScripts
                         background.baseSprite = GetLayer("").CreateSprite(filePath);
                         background.baseSprite.Scale(0, 480.0/backgroundFormat);
                         background.baseSprite.Fade(0, 0);
+                        background.baseSprite.Additive(0, 635210);
                         Log($"> Base background set!");
                         break;
 
@@ -247,6 +248,7 @@ namespace StorybrewScripts
                         background.spriteBlur = GetLayer("BLUR").CreateSprite(filePath);
                         background.spriteBlur.Scale(0, 480.0/backgroundFormat);
                         background.spriteBlur.Fade(0, 0);
+                        background.spriteBlur.Additive(0, 635210);
                         Log($"> Blur background set!");
                         break;
 
@@ -254,6 +256,7 @@ namespace StorybrewScripts
                         background.spriteBlackWhite = GetLayer("").CreateSprite(filePath);
                         background.spriteBlackWhite.Scale(0, 480.0/backgroundFormat);
                         background.spriteBlackWhite.Fade(0, 0);
+                        background.spriteBlackWhite.Additive(0, 635210);
                         Log($"> Black&White background set!");
                         break;
                     }   
@@ -315,8 +318,8 @@ namespace StorybrewScripts
             spriteTop.Fade(startTime, endTime + 1000, 1, 1);
             spriteBot.Fade(startTime, endTime + 1000, 1, 1);
 
-            spriteTop.ScaleVec(OsbEasing.OutSine, startTime, startTime + 1000, 854, 0, 854, 50);
-            spriteBot.ScaleVec(OsbEasing.OutSine, startTime, startTime + 1000, 854, 0, 854, 50);
+            spriteTop.ScaleVec(OsbEasing.OutSine, startTime, startTime + 1000, 854, 0, 854, 30);
+            spriteBot.ScaleVec(OsbEasing.OutSine, startTime, startTime + 1000, 854, 0, 854, 30);
 
             spriteTop.ScaleVec(OsbEasing.OutSine, endTime, endTime + 1000, 854, 50, 854, 0);
             spriteBot.ScaleVec(OsbEasing.OutSine, endTime, endTime + 1000, 854, 50, 854, 0);
