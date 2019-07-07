@@ -30,6 +30,8 @@ namespace StorybrewScripts
 
             ParticleManager particleManager = new ParticleManager(this);
             particleManager.GenerateFairy(11, new Vector2(320, 240));
+            particleManager.GenerateFog(30011, 70678, 320, 50, 20, "FOGBACK");
+            particleManager.GenerateFog(30011, 70678, 400, 50, 20, "FOGFRONT");
 
             var slicedCircle = GetLayer("").CreateSprite("sb/cs.png");
             slicedCircle.Fade(11, 2678, 0, 0.3);
@@ -47,6 +49,7 @@ namespace StorybrewScripts
 
             TextManager textManager = new TextManager(this);
             textManager.GenerateTextVerticlalLetter("A_HISA", 11, 4011, new Vector2(320, 240), 0.2f, "Bold");
+
         }
     }
 }

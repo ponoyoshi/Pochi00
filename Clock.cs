@@ -19,7 +19,7 @@ namespace StorybrewScripts
         OsbSprite littleHand;
         OsbSprite center;
         OsbSprite background;
-        int currentScale = 800;
+        int currentScale = 600;
         public override void Generate()
         {
             double beat = Beatmap.GetTimingPointAt(11).BeatDuration;
@@ -28,7 +28,7 @@ namespace StorybrewScripts
             SetClockSpeed(6678, 48011, beat*4);
             SetClockSpeed(49345, 70678, beat*2);
             ModifyScale(6761, 28011, 250);
-            //ModifyScale(28095, 33345, 200);
+            ModifyScale(28095, 33345, 200);
         }
         private void GenerateClock()
         {
