@@ -1,3 +1,4 @@
+using OpenTK;
 using StorybrewCommon.Scripting;
 
 public class ParticleManager
@@ -6,5 +7,10 @@ public class ParticleManager
     public ParticleManager(StoryboardObjectGenerator generator)
     {
         this.generator = generator;
+    }
+    
+    public void GenerateFairy(int startTime, int endTime, Vector2 position)
+    {
+        
     }
 }
