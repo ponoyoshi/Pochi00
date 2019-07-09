@@ -59,13 +59,14 @@ namespace StorybrewScripts
             slicedCircle.Scale(OsbEasing.InExpo, 3345, 5345, 0.7, 2);
 
             TextManager textManager = new TextManager(this);
-            textManager.GenerateTextVerticlalLetter("A_HISA", 11, 4011, new Vector2(320, 240), 0.2f, "Bold");
+            //textManager.GenerateTextVerticlalLetter("A_HISA", 11, 4011, new Vector2(320, 240), 0.2f, "Bold");
 
             flatBackground.GenerateFlash(70678, 5000);
             flatBackground.GenerateGradientBackground(70678, 81345, new Color4(.05f, 0.1f, 0.2f, 1), Color4.Black);
             
             particleManager.GenerateCircleParticles(70678, 74678, 80011, 81345);
 
+            textManager.GenerateRotatingText("HELLO WORLD", 168011, 200011, new Vector2(320, 240), 0.2f, "Bold");
         }
     }
 }
