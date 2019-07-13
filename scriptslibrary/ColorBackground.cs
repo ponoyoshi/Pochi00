@@ -39,4 +39,10 @@ public class FlatBackground
 
 
     }
+    public void RoundFade(int startTime, int endTime)
+    {
+        var sprite = generator.GetLayer("BACKGROUND").CreateSprite("sb/hl.png");
+        sprite.Scale(startTime, endTime, 0, 10);
+        sprite.Color(startTime, Color4.Black);
+    }
 }

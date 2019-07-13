@@ -24,7 +24,7 @@ namespace StorybrewScripts
         {
             double beat = Beatmap.GetTimingPointAt(11).BeatDuration;
 		    GenerateClock();
-            ShowClock(6678, 28095, 92011, 92345, 0.2f);
+            ShowClock(6678, 28095, 92011, 97345, 0.2f);
             SetClockSpeed(6678, 48011, beat*4);
             SetClockSpeed(49345, 70678, beat*2);
             ModifyScale(6761, 28011, 250);
@@ -33,6 +33,7 @@ namespace StorybrewScripts
             SetClockSpeed(70678, 81345, beat*4);
             ModifyScale(80011, 81345, 200);
             SetClockSpeed(81345, 92011, beat);
+            SetClockSpeed(92011, 97345, beat*4);
 
 
         }

@@ -29,6 +29,12 @@ namespace StorybrewScripts
 
             // Section 4
             GenerateKiaiHightlight(81345, 92011);
+
+            /* GenerateBeam(new int[]{
+                81345, 86678, 88011, 89345, 90678, 91011, 91345, 91678, 92011, 82011, 82678, 83345, 83678, 84011
+            });*/
+
+            GenerateBeam(81345, 92011);
         }
 
         public void HighlightEffect(int BeatDivisor, int StartTime, int EndTime, string SpritePath, float StartScale, float EndScale, int FadeTime, float Fade, OsbEasing Easing, bool UseHitobjectColor)
@@ -104,11 +110,37 @@ namespace StorybrewScripts
                 }
             }
         }
-        private void GenerateBeam(int startTime)
+        private void GenerateBeam(int startTime, int endTime)
         {
+            double lastObject = 0;
             foreach(var hitobject in Beatmap.HitObjects)
             {
+                if(hitobject.StartTime >= startTime && hitobject.StartTime <= endTime)
+                {
+                    if(hitobject.StartTime - lastObject > 100)
+                    {
+                        var sprite = GetLayer("").CreateSprite("sb/p.png", OsbOrigin.Centre, hitobject.Position);
+                        sprite.Rotate(hitobject.StartTime, Random(-Math.PI/8, Math.PI/8));
+                        sprite.ScaleVec(OsbEasing.OutExpo, hitobject.StartTime, hitobject.StartTime + 1000, 5, 1000, 0, 1000);
+                        sprite.Additive(hitobject.StartTime, hitobject.StartTime + 1000);
+                        sprite.Fade(hitobject.StartTime, 0.5);
+                    }
+                    
+
+                    lastObject = hitobject.StartTime;
+                }
                 
+                
+                /* foreach(var startTime in startTimes)
+                {
+                    if(startTime >= hitobject.StartTime - 5 && startTime <= hitobject.StartTime + 5)
+                    {
+                        var sprite = GetLayer("").CreateSprite("sb/p.png", OsbOrigin.Centre, hitobject.Position);
+                        sprite.Rotate(hitobject.StartTime, Random(-Math.PI/8, Math.PI/8));
+                        sprite.ScaleVec(OsbEasing.OutExpo, hitobject.StartTime, hitobject.StartTime + 2000, 10, 1000, 0, 1000);
+                        sprite.Additive(hitobject.StartTime, hitobject.StartTime + 2000);
+                    }
+                }*/
             }
         }
     }
