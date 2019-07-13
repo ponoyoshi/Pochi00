@@ -67,8 +67,6 @@ namespace StorybrewScripts
             particleManager.GenerateCircleParticles(70678, 74678, 80011, 81345);
             particleManager.GenerateCircleParticles(102678, 113261, 113428, 124011);
 
-            textManager.GenerateRotatingText("HELLO WORLD", 168011, 200011, new Vector2(320, 240), 0.2f, "Bold");
-
             flatBackground.RoundFade(92011, 102678);
             flatBackground.GenerateGradientBackground(102678, 124011, new Color4(20/255.0f, 0, 20/255.0f, 1), Color4.Black);
 
@@ -84,6 +82,43 @@ namespace StorybrewScripts
             
             TransitionManager transitionManager = new TransitionManager(this);
             transitionManager.TransitionLines(123345, 124011, 125345);
+
+
+            //3rd BG
+
+
+
+            transitionManager.TransitionLines(166345, 166678, 168011);
+            shapeManager.GenerateEmptySquare(new Vector2(320, 240), 166678, 168011, 0, 100, false, OsbEasing.OutExpo);
+
+            //3dot
+            var dot1 = GetLayer("PARTICLES").CreateSprite("sb/c.png");
+            var dot2 = GetLayer("PARTICLES").CreateSprite("sb/c.png");
+            var dot3 = GetLayer("PARTICLES").CreateSprite("sb/c.png");
+
+            dot1.Fade(167011, 167345, 0, 1);
+            dot1.Scale(167011, 0.1);
+            dot1.Move(OsbEasing.OutExpo, 167011, 167345, 300, 250, 300, 240);
+
+            dot2.Fade(167345, 167678, 0, 1);
+            dot2.Scale(167345, 0.1);
+            dot2.Move(OsbEasing.OutExpo, 167345, 167678, 340, 230, 340, 240);
+
+            dot3.Fade(167678, 168011, 0, 1);
+            dot3.Scale(OsbEasing.OutExpo, 167678, 168011, 0.3, 0.1);
+
+            dot1.Fade(168011, 168345, 1, 0);
+            dot2.Fade(168011, 168345, 1, 0);
+            dot3.Fade(168011, 168345, 1, 0);
+            dot1.Scale(168011, 168345, 0.1, 0.3);
+            dot2.Scale(168011, 168345, 0.1, 0.2);
+            dot3.Scale(168011, 168345, 0.1, 0.4);
+
+            shapeManager.GenerateEmptySquare(new Vector2(320, 240), 168011, 169345, 0, 500, false, OsbEasing.OutExpo);
+
+
+
+
         }
         private void GenerateFairies(int[] times, ParticleManager manager)
         {
