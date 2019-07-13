@@ -71,6 +71,32 @@ namespace StorybrewScripts
 
             flatBackground.RoundFade(92011, 102678);
             flatBackground.GenerateGradientBackground(102678, 124011, new Color4(20/255.0f, 0, 20/255.0f, 1), Color4.Black);
+
+
+            particleManager.GenerateFairy(102678, new Vector2(320, 240));
+            particleManager.GenerateDirectionalCross(102678, 121345, 5000, 100);
+
+            //Fairies for circular part
+            int[] fairies = {
+                113345, 114678, 115345, 116011, 116345, 116678, 117011, 117345, 118011, 118678, 119345, 119678, 120011, 120678, 121345
+            };
+            GenerateFairies(fairies, particleManager);
+            
+            TransitionManager transitionManager = new TransitionManager(this);
+            transitionManager.TransitionLines(123345, 124011, 125345);
+        }
+        private void GenerateFairies(int[] times, ParticleManager manager)
+        {
+            foreach(var hitobject in Beatmap.HitObjects)
+            {
+                foreach(var time in times)
+                {
+                    if(hitobject.StartTime >= time - 5 && hitobject.StartTime <= time + 5)
+                    {
+                        manager.GenerateFairy(hitobject.StartTime, hitobject.Position);
+                    }
+                }
+            }
         }
     }
 }

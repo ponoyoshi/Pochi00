@@ -69,6 +69,7 @@
     <Compile Include="scriptslibrary/ParticleManager.cs" />
     <Compile Include="scriptslibrary/ShapeManager.cs" />
     <Compile Include="scriptslibrary/TextManager.cs" />
+    <Compile Include="scriptslibrary/TransitionManager.cs" />
   </ItemGroup>
   <ItemGroup />
 </Project>

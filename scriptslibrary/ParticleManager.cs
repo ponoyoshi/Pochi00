@@ -11,7 +11,7 @@ public class ParticleManager
     {
         this.generator = generator;
     }
-    public void GenerateFairy(int startTime, Vector2 position)
+    public void GenerateFairy(double startTime, Vector2 position)
     {
         for(int i = 0; i < 20; i++)
         {
@@ -95,6 +95,29 @@ public class ParticleManager
             sprite.Fade(startMove, startTime, 0, 1);
             sprite.Fade(endTime, endMove, 1, 0);
             sprite.Scale(startMove, radius*0.00005);
+        }
+    }
+    public void GenerateDirectionalCross(int startTime, int endTime, int speed, int spawnDelay)
+    {
+        Vector2 basePosition = new Vector2(320, 240);
+        for(int i = 0; i < 4; i++)
+        {
+            double angle = (Math.PI/2) * i;
+            for(int sTime = startTime; sTime < endTime; sTime += spawnDelay)
+            {
+                var endPosition = new Vector2(
+                    (float)(320 + Math.Cos(angle) * 450),
+                    (float)(240 + Math.Sin(angle) * 450)
+                );
+
+                var sprite = generator.GetLayer("PARTICLES").CreateSprite("sb/p.png", OsbOrigin.Centre);
+                sprite.Move(OsbEasing.OutSine, sTime, sTime + speed, basePosition, endPosition);
+                sprite.Fade(sTime + speed/6, sTime + speed/2, 0, 1);
+                sprite.ScaleVec(sTime, sTime + speed, 10, 1, 10, 0);
+                sprite.Rotate(OsbEasing.InSine, sTime, sTime + speed, angle, angle - 1.5);
+
+                angle += Math.PI/60;
+            }
         }
     }
 }
