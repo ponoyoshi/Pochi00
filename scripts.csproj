@@ -63,7 +63,7 @@
     <Compile Include="FullSbPart32.cs" />
     <Compile Include="HighlightManager.cs" />
     <Compile Include="Introduction.cs" />
-    <Compile Include="Text.cs" />
+    <Compile Include="Vignette.cs" />
     <Compile Include="scriptslibrary/ColorBackground.cs" />
     <Compile Include="scriptslibrary/FontLibrary.cs" />
     <Compile Include="scriptslibrary/ParticleManager.cs" />
