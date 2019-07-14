@@ -35,7 +35,9 @@ namespace StorybrewScripts
             SetClockSpeed(81345, 92011, beat);
             SetClockSpeed(92011, 97345, beat*4);
 
-
+            ShowClock(168011, 169345, 200011, 202678, 0.2f);
+            SetClockSpeed(168011, 202678, beat);
+            
         }
         private void GenerateClock()
         {

@@ -182,14 +182,12 @@ namespace StorybrewScripts
         {
             if(isLayered)
             {
-                int i = 0;
                 switch(fadeType)
                 {          
                     case FadeType.IN:
                     foreach(var layer in sprites)
                     {
-                        layer.Fade(OsbEasing.InSine, startTime + (i * 300), endTime + (i * 300), 0, 1);
-                        i++;
+                        layer.Fade(OsbEasing.InSine, startTime, startTime + 1000, 0, 1);
                     }
                         
                     break;
@@ -198,7 +196,6 @@ namespace StorybrewScripts
                     foreach(var layer in sprites)
                     {
                         layer.Fade(OsbEasing.OutSine, startTime, startTime, 1, 0);
-                        i++;
                     }  
                     break;
                 }

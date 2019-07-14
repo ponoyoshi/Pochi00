@@ -81,13 +81,23 @@ namespace StorybrewScripts
             GenerateFairies(fairies, particleManager);
             
             TransitionManager transitionManager = new TransitionManager(this);
-            transitionManager.TransitionLines(123345, 124011, 125345);
+            transitionManager.TransitionLines(123345, 124011, 124011);
 
 
             //3rd BG
 
-            transitionManager.TransitionLines(166345, 166678, 168011);
+            flatBackground.GenerateFlash(145345, 1000);
+            flatBackground.GenerateFlash(28011, 1000);
+            flatBackground.GenerateFlash(168011, 1000);
+            flatBackground.GenerateFlash(189345, 1000);
+            flatBackground.GenerateFlash(200011, 3000);
+            
+            transitionManager.TransitionLines(166345, 166678, 167678);
             shapeManager.GenerateEmptySquare(new Vector2(320, 240), 166678, 168011, 0, 100, false, OsbEasing.OutExpo);
+
+            particleManager.GenerateFog(168011, 200011, 320, 50, 20, "FOGFRONT");
+            particleManager.GenerateFog(168011, 200011, 400, 50, 20, "FOGTOP");
+
 
             //3dot
             var dot1 = GetLayer("PARTICLES").CreateSprite("sb/c.png");
@@ -113,6 +123,8 @@ namespace StorybrewScripts
             dot3.Scale(168011, 168345, 0.1, 0.4);
 
             shapeManager.GenerateEmptySquare(new Vector2(320, 240), 168011, 169345, 0, 500, false, OsbEasing.OutExpo);
+            shapeManager.GenerateEmptySquare(new Vector2(320, 240), 195011, 196011, 0, 300, false, OsbEasing.OutExpo);
+            shapeManager.GenerateEmptySquare(new Vector2(320, 240), 194011, 194678, 400, 0, true, OsbEasing.InExpo);
 
 
 
