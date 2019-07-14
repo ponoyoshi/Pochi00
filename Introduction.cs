@@ -86,7 +86,7 @@ namespace StorybrewScripts
 
             //3rd BG
 
-
+            textManager.GenerateRotatingText("TEST TEST TEST", 0, 10000, new Vector2(320, 240), 0.1f, 5000);
 
             transitionManager.TransitionLines(166345, 166678, 168011);
             shapeManager.GenerateEmptySquare(new Vector2(320, 240), 166678, 168011, 0, 100, false, OsbEasing.OutExpo);

@@ -44,7 +44,7 @@ public class TextManager
             letterX += texture.BaseWidth * scale;
         }
     }
-    public void GenerateRotatingText(string text, int startTime, int endTime, Vector2 position, float scale, string fontStyle = "Regular")
+    public void GenerateRotatingText(string text, int startTime, int endTime, Vector2 position, float scale, int speed, string fontStyle = "Regular")
     {
         if(fontlibrary == null)
             fontlibrary = new FontLibrary(generator);
@@ -64,21 +64,20 @@ public class TextManager
             if(!texture.IsEmpty)
             {
                 var letterPosition = new Vector2(letterX, letterY)
-                + texture.OffsetFor(OsbOrigin.Centre) *scale;
+                + texture.OffsetFor(OsbOrigin.Centre) * scale;
            
                 var sprite = generator.GetLayer("TEXT").CreateSprite(texture.Path, OsbOrigin.Centre, letterPosition);
-                sprite.StartLoopGroup(startTime + delay, duration/10000);
-                sprite.MoveX(OsbEasing.InOutSine, 0, 5000, position.X + SentenceOptions.Width, position.X - SentenceOptions.Width);
-                sprite.MoveX(OsbEasing.InOutSine, 5000, 10000, position.X + SentenceOptions.Width, position.X - SentenceOptions.Width);
+                sprite.StartLoopGroup(startTime + delay, duration/speed);
+                sprite.MoveX(OsbEasing.InOutSine, 0, speed, position.X + SentenceOptions.Width, position.X - SentenceOptions.Width);
                 sprite.Fade(OsbEasing.InOutSine, 0, 1000, 0, 1);
-                sprite.Fade(OsbEasing.InOutSine, 1000, 4000, 1, 1);
-                sprite.Fade(OsbEasing.InOutSine, 4000, 5000, 1, 0);
-                sprite.ScaleVec(OsbEasing.InOutSine, 0, 2500, 0, scale, scale, scale);
-                sprite.ScaleVec(OsbEasing.InOutSine, 2500, 5000, scale, scale, 0, scale);
+                sprite.Fade(OsbEasing.InOutSine, 1000, speed - 1000, 1, 1);
+                sprite.Fade(OsbEasing.InOutSine, speed - 1000, speed, 1, 0);
+                sprite.ScaleVec(OsbEasing.InOutSine, 0, speed/2, 0, scale, scale, scale);
+                sprite.ScaleVec(OsbEasing.InOutSine, speed/2, speed, scale, scale, 0, scale);
                 sprite.EndGroup();
             }        
             letterX += texture.BaseWidth * scale;
-            delay += 300;
+            delay += speed/(text.Length*2);
         }
     }
     private class SentenceOptions
