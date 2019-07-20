@@ -43,9 +43,9 @@ namespace StorybrewScripts
             //SONG2///////////////////////////////////////////////////////////////////////////////
             bigHand.Rotate(203419, 0 - 16*((Math.PI*2)/60));
             beat = Beatmap.GetTimingPointAt(203420).BeatDuration;
-            ShowClock(203420, 216661, 359006, 374967, 0.5f);
+            ShowClock(203420, 216661, 359006, 374967, 0.2f);
             SetClockSpeed(203420, 216660, beat*2);
-            ModifyScale(203420, 216661, 220);
+            ModifyScale(203420, 216661, 210);
             ChangeHour(216661, 217488, 1, OsbEasing.OutExpo);
             ChangeHour(217488, 217902, -0.5, OsbEasing.OutExpo);
             ChangeHour(217902, 218316, 1, OsbEasing.OutExpo);
@@ -75,6 +75,34 @@ namespace StorybrewScripts
             ChangeHour(229488, 229902, -1, OsbEasing.InExpo);
             SetClockSpeed(229902, 243144, beat*4);
             SetClockSpeed(243144, 256385, beat*2);
+
+            ChangeHour(256385, 257213, 1, OsbEasing.InExpo);
+            ChangeHour(258040, 258868, -1, OsbEasing.InExpo);
+            ChangeHour(259695, 260109, 0.2, OsbEasing.OutExpo);
+            ChangeHour(260109, 260523, 0.3, OsbEasing.OutExpo);
+            ChangeHour(260523, 260937, 0.2, OsbEasing.OutExpo);
+            ChangeHour(260937, 261351, 0.1, OsbEasing.OutExpo);
+            ChangeHour(261351, 263006, 0.05, OsbEasing.OutExpo);
+            ChangeHour(263006, 263833, 1, OsbEasing.InExpo);
+            ChangeHour(264661, 265488, -1, OsbEasing.InExpo);
+            ChangeHour(266316, 267144, 1, OsbEasing.InExpo);
+            ChangeHour(267144, 267557, 1, OsbEasing.OutExpo);
+            ChangeHour(267557, 267971, -0.5, OsbEasing.OutExpo);
+            ChangeHour(267971, 268799, 0.5, OsbEasing.InExpo);
+            ChangeHour(268799, 269213, 0.2, OsbEasing.OutElastic);
+            ChangeHour(269213, 269626, 0.4, OsbEasing.OutElastic);
+            ChangeHour(269626, 270454, 0.4, OsbEasing.OutSine);
+            ChangeHour(270454, 270868, -0.4, OsbEasing.OutSine);
+            ChangeHour(270868, 271282, 0.2, OsbEasing.OutSine);
+            ChangeHour(271282, 272109, 0.2, OsbEasing.OutExpo);
+            ChangeHour(272109, 272523, 0.4, OsbEasing.OutExpo);
+            ChangeHour(272523, 272937, 0.1, OsbEasing.OutExpo);
+            ChangeHour(272937, 273351, 0.1, OsbEasing.OutExpo);
+            ChangeHour(273351, 273764, 0.5, OsbEasing.OutExpo);
+            ChangeHour(273764, 274178, 0.3, OsbEasing.OutExpo);
+            ChangeHour(274178, 274592, 0.6, OsbEasing.OutExpo);
+            ChangeHour(274592, 276247, -1, OsbEasing.InExpo);
+
 
             
 
