@@ -11,7 +11,7 @@ public class ParticleManager
     {
         this.generator = generator;
     }
-    public void GenerateFairy(double startTime, Vector2 position)
+    public void GenerateFairy(double startTime, Vector2 position, int durationMin = 5000, int durationMax = 10000)
     {
         for(int i = 0; i < 20; i++)
         {
@@ -23,11 +23,12 @@ public class ParticleManager
                 (float)(position.Y + Math.Sin(angle) * radius)
             );
 
-            var particleDuration = generator.Random(5000, 10000);
+            var particleDuration = generator.Random(durationMin, durationMax);
             var sprite = generator.GetLayer("PARTICLES").CreateSprite("sb/d.png");
             sprite.Fade(startTime, startTime + particleDuration, 1, 0);
             sprite.Scale(startTime, startTime + particleDuration, radius*0.001, 0);
             sprite.Move(OsbEasing.OutExpo, startTime, startTime + particleDuration, position, endPosition);
+            sprite.Additive(startTime, startTime + particleDuration);
         }
     }
     public void GenerateFog(int startTime, int endTime, int posY, int stroke, int quantity, string layer = "PARTICLES")
@@ -119,5 +120,30 @@ public class ParticleManager
                 angle += Math.PI/60;
             }
         }
+    }
+    public void GenerateLinesPlane(int startTime, Vector2 position, bool direction)
+    {
+        var line = generator.GetLayer("PARTICLES").CreateSprite("sb/pl.png", OsbOrigin.CentreRight);
+        line.Fade(startTime, startTime + 2000, 1, 0);
+        line.ScaleVec(OsbEasing.OutExpo, startTime, startTime + 2000, 3, 0.2, 0, 0);
+        line.MoveY(startTime, position.Y);
+        line.MoveX(OsbEasing.OutExpo, startTime, startTime + 500, direction == true ? -107 : 745, direction == true ? 1000 : -300);
+        
+        if(!direction)
+            line.Rotate(startTime, Math.PI);
+
+        line.Additive(startTime, startTime + 2000);
+
+        var hl = generator.GetLayer("PARTICLES").CreateSprite("sb/hl.png", OsbOrigin.Centre, position);
+        hl.Fade(startTime, startTime + 1000, 1, 0);
+        hl.Scale(OsbEasing.OutExpo, startTime, startTime + 1000, 0.2, 0.25);
+        hl.Additive(startTime, startTime + 1000);
+
+        var circle = generator.GetLayer("PARTICLES").CreateSprite("sb/c2.png", OsbOrigin.Centre, position);
+        circle.Fade(startTime, startTime + 1000, 1, 0);
+        circle.Scale(OsbEasing.OutExpo, startTime, startTime + 1000, 0.3, 0.35);
+        circle.Additive(startTime, startTime + 1000);
+
+        GenerateFairy(startTime, position, 1000, 3000);
     }
 }

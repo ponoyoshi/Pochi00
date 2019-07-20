@@ -34,10 +34,50 @@ namespace StorybrewScripts
             ModifyScale(80011, 81345, 200);
             SetClockSpeed(81345, 92011, beat);
             SetClockSpeed(92011, 97345, beat*4);
-
-            ShowClock(168011, 169345, 200011, 202678, 0.2f);
             SetClockSpeed(168011, 202678, beat);
             
+
+
+            ShowClock(168011, 169345, 200011, 203345, 0.2f);
+
+            //SONG2///////////////////////////////////////////////////////////////////////////////
+            bigHand.Rotate(203419, 0 - 16*((Math.PI*2)/60));
+            beat = Beatmap.GetTimingPointAt(203420).BeatDuration;
+            ShowClock(203420, 216661, 359006, 374967, 0.5f);
+            SetClockSpeed(203420, 216660, beat*2);
+            ModifyScale(203420, 216661, 220);
+            ChangeHour(216661, 217488, 1, OsbEasing.OutExpo);
+            ChangeHour(217488, 217902, -0.5, OsbEasing.OutExpo);
+            ChangeHour(217902, 218316, 1, OsbEasing.OutExpo);
+            ChangeHour(218316, 219144, 1, OsbEasing.OutElastic);
+            ChangeHour(219144, 219557, 0.5, OsbEasing.InExpo);
+            ChangeHour(219557, 219971, -0.5, OsbEasing.InExpo);
+            ChangeHour(219971, 220799, 1, OsbEasing.OutSine);
+            ChangeHour(220799, 221213, 1, OsbEasing.OutExpo);
+            ChangeHour(221213, 221626, -1, OsbEasing.OutExpo);
+            ChangeHour(221626, 222454, -2, OsbEasing.OutExpo);
+            ChangeHour(222454, 222661, 0.2, OsbEasing.OutExpo);
+            ChangeHour(222661, 222868, 0.3, OsbEasing.OutExpo);
+            ChangeHour(222868, 223075, 0.4, OsbEasing.OutExpo);
+            ChangeHour(223075, 223282, 1, OsbEasing.OutExpo);
+            ChangeHour(223282, 224109, -1, OsbEasing.InExpo);
+            ChangeHour(224109, 224523, 1, OsbEasing.OutElastic);
+            ChangeHour(224523, 224937, 1, OsbEasing.In);
+            ChangeHour(224937, 225764, 1, OsbEasing.InExpo);
+            ChangeHour(225764, 226075, 0.2, OsbEasing.OutExpo);
+            ChangeHour(226075, 226385, 0.2, OsbEasing.OutExpo);
+            ChangeHour(226385, 226592, 0.2, OsbEasing.OutExpo);
+            ChangeHour(226592, 227420, 0.2, OsbEasing.InOutElastic);
+            ChangeHour(227420, 227833, 1, OsbEasing.OutExpo);
+            ChangeHour(227833, 228247, -1, OsbEasing.OutExpo);
+            ChangeHour(228247, 229075, 2, OsbEasing.OutExpo);
+            ChangeHour(229075, 229488, 1, OsbEasing.OutExpo);
+            ChangeHour(229488, 229902, -1, OsbEasing.InExpo);
+            SetClockSpeed(229902, 243144, beat*4);
+            SetClockSpeed(243144, 256385, beat*2);
+
+            
+
         }
         private void GenerateClock()
         {
@@ -129,6 +169,15 @@ namespace StorybrewScripts
 
 
             currentScale = scale;
+        }
+        private void ChangeHour(int startTime, int endTime, double hour, OsbEasing easing)
+        {
+            double angle = hour*((Math.PI*2)/12);
+            double currentRotation = bigHand.RotationAt(startTime);
+            double littleCurrent = littleHand.RotationAt(startTime);
+            bigHand.Rotate(easing, startTime, endTime, currentRotation, currentRotation + (angle+(Math.PI*2))*hour);
+            littleHand.Rotate(easing, startTime, endTime, littleCurrent, littleCurrent + angle);
+
         }
     }
 }

@@ -126,8 +126,32 @@ namespace StorybrewScripts
             shapeManager.GenerateEmptySquare(new Vector2(320, 240), 195011, 196011, 0, 300, false, OsbEasing.OutExpo);
             shapeManager.GenerateEmptySquare(new Vector2(320, 240), 194011, 194678, 400, 0, true, OsbEasing.InExpo);
 
+            //PLANES LINES
+            int[] linesTimes = {
+                145345, 146678, 147345, 148011, 149345, 150011, 150678, 151345, 152011, 152678, 153011, 153345, 154678, 156011, 157345, 158011, 158678,
+                159345, 160011, 160678, 161345, 162011, 162678, 163011, 163345, 164011, 164678, 165011, 165345, 148678, 149011, 155345, 157011, 157178,
+                159678, 146345, 146511, 155345
+            };
+
+            flatBackground.GenerateFlash(156011, 5000);
+            flatBackground.GenerateFlash(178678, 2000);
+            flatBackground.GenerateFlash(195011, 1000);
 
 
+            foreach(var hitobject in Beatmap.HitObjects)
+            {
+                foreach(var time in linesTimes)
+                {
+                    if(hitobject.StartTime >= time - 5 && hitobject.StartTime <= time + 5)
+                    {
+                        particleManager.GenerateLinesPlane(time, hitobject.Position, Random(0,10) > 5 ? true : false);
+                    }
+                }
+            }
+
+
+            //SONG 2////////////////////////////////////////////////////////////////////////////////////////////////////
+            flatBackground.GenerateGradientBackground(203420, 229902, new Color4(0.06f, 0.01f, 0.06f, 1), Color4.Black);
 
         }
         private void GenerateFairies(int[] times, ParticleManager manager)
