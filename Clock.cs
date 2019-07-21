@@ -43,9 +43,9 @@ namespace StorybrewScripts
             //SONG2///////////////////////////////////////////////////////////////////////////////
             bigHand.Rotate(203419, 0 - 16*((Math.PI*2)/60));
             beat = Beatmap.GetTimingPointAt(203420).BeatDuration;
-            ShowClock(203420, 216661, 359006, 374967, 0.2f);
+            ShowClock(203420, 216661, 359006, 374967, 1, false);
             SetClockSpeed(203420, 216660, beat*2);
-            ModifyScale(203420, 216661, 210);
+            ModifyScale(203420, 216661, 100);
             ChangeHour(216661, 217488, 1, OsbEasing.OutExpo);
             ChangeHour(217488, 217902, -0.5, OsbEasing.OutExpo);
             ChangeHour(217902, 218316, 1, OsbEasing.OutExpo);
@@ -141,25 +141,31 @@ namespace StorybrewScripts
             littleHand.ScaleVec(0, currentScale*0.0018, currentScale*0.0018);
             littleHand.Fade(0, 0); 
         }
-        private void ShowClock(int startFade, int startTime, int endTime, int endFade, float fade)
+        private void ShowClock(int startFade, int startTime, int endTime, int endFade, float fade, bool backgroundSprite = true)
         {
-            for(int i = 0; i < cadrant.Length; i++)
+            if(backgroundSprite)
             {
-                cadrant[i].Fade(startFade, startTime, 0, fade);
-                cadrant[i].Fade(endTime, endFade, fade, 0);
+                for(int i = 0; i < cadrant.Length; i++)
+                {
+                    cadrant[i].Fade(startFade, startTime, 0, fade);
+                    cadrant[i].Fade(endTime, endFade, fade, 0);
+                }
             }
-
+            
             center.Fade(startFade, startTime, 0, 0.8);
             center.Fade(endTime, endFade, 0.8, 0);
-
+        
             bigHand.Fade(startFade, startTime, 0, fade);
             bigHand.Fade(endTime, endFade, fade, 0);
 
             littleHand.Fade(startFade, startTime, 0, fade);
             littleHand.Fade(endTime, endFade, fade, 0);
 
-            background.Fade(startFade, startTime, 0, fade);
-            background.Fade(endTime, endFade, fade, 0);
+            if(backgroundSprite)
+            {
+                background.Fade(startFade, startTime, 0, fade);
+                background.Fade(endTime, endFade, fade, 0);
+            }
         }
         private void SetClockSpeed(int startTime, int endTime, double speed)
         {
