@@ -155,6 +155,7 @@ namespace StorybrewScripts
             flatBackground.GenerateGradientBackground(216661, 229902, new Color4(0.1f, 0.01f, 0.01f, 1), Color4.Black);
             flatBackground.GenerateGradientBackground(229902, 256385, new Color4(0.01f, 0.01f, 0.06f, 1), Color4.Black);
             flatBackground.GenerateGradientBackground(256385, 272937, new Color4(0.01f, 0.06f, 0.01f, 1), Color4.Black);
+            flatBackground.GenerateGradientBackground(315971, 332523, new Color4(0.1f, 0.1f, 0.1f, 1), Color4.Black);
             particleManager.GenerateCircleParticles(203420, 216661, 229902, 236523);
 
         }

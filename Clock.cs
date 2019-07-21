@@ -43,7 +43,7 @@ namespace StorybrewScripts
             //SONG2///////////////////////////////////////////////////////////////////////////////
             bigHand.Rotate(203419, 0 - 16*((Math.PI*2)/60));
             beat = Beatmap.GetTimingPointAt(203420).BeatDuration;
-            ShowClock(203420, 216661, 359006, 374967, 1, false);
+            ShowClock(203420, 216661, 328799, 332523, 1, false);
             SetClockSpeed(203420, 216660, beat*2);
             ModifyScale(203420, 216661, 100);
             ChangeHour(216661, 217488, 1, OsbEasing.OutExpo);
@@ -73,6 +73,8 @@ namespace StorybrewScripts
             ChangeHour(228247, 229075, 2, OsbEasing.OutExpo);
             ChangeHour(229075, 229488, 1, OsbEasing.OutExpo);
             ChangeHour(229488, 229902, -1, OsbEasing.InExpo);
+
+            ShowHours(229902, 272937, 120);
             SetClockSpeed(229902, 243144, beat*4);
             SetClockSpeed(243144, 256385, beat*2);
 
@@ -103,6 +105,14 @@ namespace StorybrewScripts
             ChangeHour(274178, 274592, 0.6, OsbEasing.OutExpo);
             ChangeHour(274592, 276247, -1, OsbEasing.InExpo);
 
+            ModifyScale(289488, 302730, 200);
+            ChangeHour(302730, 309351, 6, OsbEasing.InSine);
+            ChangeHour(309351, 315971, 8, OsbEasing.OutSine);
+            SetClockSpeed(315971, 325902, beat);
+            SetClockSpeed(325902, 328385, beat*2);
+            ChangeHour(328799, 332523, -0.1, OsbEasing.OutExpo);
+            ShowHours(302730, 325902, 230);
+            ModifyScale(328799, 332523, 100);
 
             
 
@@ -212,6 +222,24 @@ namespace StorybrewScripts
             bigHand.Rotate(easing, startTime, endTime, currentRotation, currentRotation + (angle+(Math.PI*2))*hour);
             littleHand.Rotate(easing, startTime, endTime, littleCurrent, littleCurrent + angle);
 
+        }
+        private void ShowHours(int startTime, int endTime, int radius)
+        {
+            double angle = 0;
+            for(int i = 0; i < 60; i++)
+            {
+                var position = new Vector2(
+                    (float)(320 + Math.Cos(angle) * radius),
+                    (float)(240 + Math.Sin(angle) * radius)
+                );
+
+                var cadrantElement = GetLayer("").CreateSprite("sb/p.png", OsbOrigin.Centre, position);
+                cadrantElement.Scale(startTime, i%5==0 ? 4 : 1);
+                cadrantElement.Fade(startTime + (i*20), startTime + (i*50) + 1000, 0, 1);
+                cadrantElement.Fade(endTime + (i*20), endTime + (i*50) + 1000, 1, 0);
+                cadrantElement.Rotate(startTime, angle + Math.PI/4);
+                angle += (Math.PI*2)/60;
+            }
         }
     }
 }
