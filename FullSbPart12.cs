@@ -556,7 +556,7 @@ namespace StorybrewScripts
                 sprite.Scale(229902, 230523, Scale, 0);
                 sprite.Rotate(OsbEasing.OutBack, StartTime, 229075, 0, Random(-Rotation, Rotation));
                 sprite.Rotate(OsbEasing.OutBack, 229075, 229282, Random(-Rotation, Rotation), 0);
-                sprite.Move(OsbEasing.OutBack, StartTime + (Delay + 6) * i, 229075, new Vector2(800, position.Y), position);
+                sprite.Move(OsbEasing.OutBack, StartTime + (Delay + 3) * i, 229075, new Vector2(800, position.Y), position);
                 sprite.Move(229075, 229282 + Delay * i, new Vector2(position.X, nHeight), new Vector2(position.X, nHeight));
                 sprite.Move(229282, 229488 + Delay * i, new Vector2(position.X, nHeight2), new Vector2(position.X, nHeight2));
                 sprite.Move(OsbEasing.OutBack, 229488 + Delay * i, 229902 + Delay * i, new Vector2(position.X, nHeight2), new Vector2(position.X, Random(230, 250)));
