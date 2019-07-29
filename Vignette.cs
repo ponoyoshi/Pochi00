@@ -9,6 +9,7 @@ namespace StorybrewScripts
         public override void Generate()
         {
             GenerateVignette(124011, 145345);
+            GenerateVignette(277902, 289488);
         }
         
         private void GenerateVignette(int StartTime, int EndTime)

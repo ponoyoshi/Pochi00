@@ -62,6 +62,7 @@
     <Compile Include="FullSbPart30.cs" />
     <Compile Include="FullSbPart32.cs" />
     <Compile Include="HighlightManager.cs" />
+    <Compile Include="ImportOsb.cs" />
     <Compile Include="Introduction.cs" />
     <Compile Include="Section2.cs" />
     <Compile Include="Vignette.cs" />
