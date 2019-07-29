@@ -43,8 +43,10 @@ namespace StorybrewScripts
             //SONG2///////////////////////////////////////////////////////////////////////////////
             bigHand.Rotate(203419, 0 - 16*((Math.PI*2)/60));
             beat = Beatmap.GetTimingPointAt(203420).BeatDuration;
-            ShowClock(203420, 216661, 328799, 332523, 1, false);
+            ShowClock(203420, 216661, 276247, 276351, 1, false);
+            ShowClock(289488, 302730, 328799, 331695, 1, false);
             SetClockSpeed(203420, 216660, beat*2);
+            SetClockSpeed(289488, 302316, beat);
             ModifyScale(203420, 216661, 100);
             ChangeHour(216661, 217488, 1, OsbEasing.OutExpo);
             ChangeHour(217488, 217902, -0.5, OsbEasing.OutExpo);

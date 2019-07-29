@@ -73,6 +73,23 @@ public class ParticleManager
             }
         }
     }
+    public void GenerateParticlesMoveUp(int startTime, int endTime)
+    {
+        for(int i = 0; i < 300; i++)
+        {  
+            var duration = generator.Random(5000, 20000);
+            int posX = generator.Random(-107, 747);
+            var sprite = generator.GetLayer("PARTICLES").CreateSprite("sb/s.png");
+            sprite.Scale(startTime, generator.Random(0.01, 0.05));
+            sprite.MoveX(startTime, generator.Random(-107, 747));
+            sprite.StartLoopGroup(startTime + generator.Random(0, 2000), (endTime-startTime)/duration);
+            sprite.MoveX(OsbEasing.InOutSine, 0, duration/2, posX - 10, posX + 10);
+            sprite.MoveX(OsbEasing.InOutSine, duration/2, duration, posX + 10, posX - 10);
+            sprite.MoveY(OsbEasing.OutSine, 0, duration, 480, generator.Random(0, 300));
+            sprite.Fade(0, duration, 0.2, 0);
+            sprite.EndGroup();                
+        }
+    }
     public void GenerateCircleParticles(int startMove, int startTime, int endTime, int endMove)
     {
         for(int i = 0; i < 200; i++)

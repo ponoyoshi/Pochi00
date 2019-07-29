@@ -137,6 +137,8 @@ namespace StorybrewScripts
             flatBackground.GenerateFlash(178678, 2000);
             flatBackground.GenerateFlash(195011, 1000);
 
+            particleManager.GenerateParticlesMoveUp(229902, 274592);
+
 
             foreach(var hitobject in Beatmap.HitObjects)
             {
@@ -157,6 +159,13 @@ namespace StorybrewScripts
             flatBackground.GenerateGradientBackground(256385, 272937, new Color4(0.01f, 0.06f, 0.01f, 1), Color4.Black);
             flatBackground.GenerateGradientBackground(315971, 332523, new Color4(0.1f, 0.1f, 0.1f, 1), Color4.Black);
             particleManager.GenerateCircleParticles(203420, 216661, 229902, 236523);
+
+            particleManager.GenerateFog(332523, 357351, 400, 20, 20, "FOGFRONT");
+            particleManager.GenerateFog(332523, 357351, 420, 20, 20);
+            flatBackground.GenerateFlash(332523, 3000);
+            flatBackground.GenerateFlash(345764, 2000);
+            particleManager.GenerateLinesPlane(345764, new Vector2(225, 260), Random(0,10) > 5 ? true : false);
+
 
         }
         private void GenerateFairies(int[] times, ParticleManager manager)
