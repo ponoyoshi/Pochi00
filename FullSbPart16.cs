@@ -44,7 +44,7 @@ namespace StorybrewScripts
                 var sprite = layer.CreateSprite("sb/p.png", OsbOrigin.Centre);
 
                 Vector2 standardScale = new Vector2(100, 150);
-                Vector2 skewedScale = new Vector2(30, 150);
+                Vector2 skewedScale = new Vector2(30, -150);
                 float standardRotation = MathHelper.DegreesToRadians(0);
                 float skewedRotation = MathHelper.DegreesToRadians(60);
 
@@ -98,7 +98,7 @@ namespace StorybrewScripts
                 var sprite = layer.CreateSprite("sb/p.png", OsbOrigin.Centre);
 
                 Vector2 standardScale = new Vector2(5, 100);
-                Vector2 skewedScale = new Vector2(50, 100);
+                Vector2 skewedScale = new Vector2(50, -100);
                 float standardRotation = MathHelper.DegreesToRadians(60);
                 float skewedRotation = MathHelper.DegreesToRadians(120);
 
@@ -242,7 +242,7 @@ namespace StorybrewScripts
                 var sprite = layer.CreateSprite("sb/p.png", OsbOrigin.Centre);
 
                 Vector2 standardScale = new Vector2(5, 100);
-                Vector2 skewedScale = new Vector2(50, 100);
+                Vector2 skewedScale = new Vector2(50, -100);
                 float standardRotation = MathHelper.DegreesToRadians(60);
                 float skewedRotation = MathHelper.DegreesToRadians(120);
 
@@ -419,7 +419,7 @@ namespace StorybrewScripts
                 var sprite = layer.CreateSprite("sb/c3.png", OsbOrigin.Centre);
 
                 Vector2 standardScale = new Vector2(0.4f, 0.4f);
-                Vector2 skewedScale = new Vector2(0.01f, 0.4f);
+                Vector2 skewedScale = new Vector2(0.01f, -0.4f);
                 float standardRotation = MathHelper.DegreesToRadians(0);
                 float skewedRotation = MathHelper.DegreesToRadians(60);
 
