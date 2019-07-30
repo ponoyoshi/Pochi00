@@ -1,5 +1,7 @@
+using System;
 using OpenTK.Graphics;
 using StorybrewCommon.Scripting;
+using StorybrewCommon.Storyboarding;
 
 public class FlatBackground
 {
@@ -44,5 +46,21 @@ public class FlatBackground
         var sprite = generator.GetLayer("BACKGROUND").CreateSprite("sb/hl.png");
         sprite.Scale(startTime, endTime, 0, 10);
         sprite.Color(startTime, Color4.Black);
+    }
+    public void GenerateLinearGradient(int startFade, int startTime, int endTime, int endFade, Color4 colorFront, Color4 colorBack)
+    {
+        var background = generator.GetLayer("BACKGROUND").CreateSprite("sb/p.png");
+        background.ScaleVec(startTime, 854, 480);
+        background.Fade(startFade, startTime, 0, 1);
+        background.Fade(endTime, endFade, 1, 0);
+        background.Color(startTime, colorBack);
+
+        var foreground = generator.GetLayer("BACKGROUND").CreateSprite("sb/grad.png", OsbOrigin.CentreLeft, new OpenTK.Vector2(320, 480));
+        foreground.ScaleVec(startTime, 0.7, 10);
+        foreground.Fade(startFade, startTime, 0, 1);
+        foreground.Fade(endTime, endFade, 1, 0);
+        foreground.Color(startFade, colorFront);
+        foreground.Rotate(startTime, -Math.PI/2);
+    
     }
 }

@@ -163,4 +163,20 @@ public class ParticleManager
 
         GenerateFairy(startTime, position, 1000, 3000);
     }
+
+    public void GenerateRain(int startTime, int endTime, int intensity)
+    {
+        var duration = endTime - startTime;
+        for(int i = 0; i < intensity * 7.5; i++)
+        {
+            int particleSpeed = generator.Random(70000, 100000)/(intensity*10);
+            var sprite = generator.GetLayer("PARTICLES").CreateSprite("sb/pl.png", OsbOrigin.Centre, new Vector2(generator.Random(-107, 747), 0));
+            sprite.StartLoopGroup(startTime + (i * 100), duration/particleSpeed);
+            sprite.MoveY(0, particleSpeed, -100, 580);
+            sprite.EndGroup();
+            sprite.Fade(startTime, generator.Random(0.1, 0.4));
+            sprite.Scale(startTime, (1f/particleSpeed)*20 );
+            sprite.Rotate(startTime, Math.PI/2);
+        }
+    }
 }

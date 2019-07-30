@@ -166,7 +166,14 @@ namespace StorybrewScripts
             flatBackground.GenerateFlash(345764, 2000);
             particleManager.GenerateLinesPlane(345764, new Vector2(225, 260), Random(0,10) > 5 ? true : false);
 
+            particleManager.GenerateRain(380543, 423210, 20);
 
+            flatBackground.GenerateLinearGradient(380543, 391210, 401543, 401877, new Color4(.1f, .1f, .1f, 1), Color4.Black);
+            flatBackground.GenerateFlash(401877, 2000);
+            particleManager.GenerateFog(401877, 423210, 450, 30, 20);
+            shapeManager.GenerateEmptySquare(new Vector2(320, 240), 421877, 423210, 500, 0, true, OsbEasing.InExpo);
+            shapeManager.GenerateEmptySquare(new Vector2(320, 240), 423210, 424543, 0, 300, false, OsbEasing.OutExpo);
+            
         }
         private void GenerateFairies(int[] times, ParticleManager manager)
         {
