@@ -29,6 +29,7 @@ namespace StorybrewScripts
 
             // Section 4
             GenerateKiaiHightlight(81345, 92011);
+            GenerateBeam(412543, 423210);
 
             /* GenerateBeam(new int[]{
                 81345, 86678, 88011, 89345, 90678, 91011, 91345, 91678, 92011, 82011, 82678, 83345, 83678, 84011

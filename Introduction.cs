@@ -173,6 +173,23 @@ namespace StorybrewScripts
             particleManager.GenerateFog(401877, 423210, 450, 30, 20);
             shapeManager.GenerateEmptySquare(new Vector2(320, 240), 421877, 423210, 500, 0, true, OsbEasing.InExpo);
             shapeManager.GenerateEmptySquare(new Vector2(320, 240), 423210, 424543, 0, 300, false, OsbEasing.OutExpo);
+            shapeManager.GenerateEmptySquare(new Vector2(320, 240), 401543, 404543, 0, 500, false, OsbEasing.OutExpo);
+
+            particleManager.GenerateFairy(376173, new Vector2(320, 240));
+            transitionManager.SquareTransition(377261, 380543, true, 30, new Color4(.13F, .1f, .1f, 1), OsbEasing.InExpo);
+            transitionManager.SquareTransition(400543, 401877, true, 50, new Color4(.13F, .1f, .1f, 1), OsbEasing.InExpo);
+            transitionManager.SquareTransition(331178, 332523, true, 50, Color4.Black, OsbEasing.InExpo);
+            transitionManager.SquareTransition(355695, 359006, true, 10, Color4.Black, OsbEasing.InSine);
+            flatBackground.GenerateFlash(380543, 3000);
+            transitionManager.TransitionLines(465210, 465543, 465877);
+
+            int basesize = 10;
+            for(int i2 = 400543; i2 < 401210; i2 += 84)
+            {
+                shapeManager.GenerateEmptySquare(new Vector2(320, 240), i2, i2 + 3000, 0, basesize, false, OsbEasing.OutExpo);
+                basesize += 100;
+            }
+            
             
         }
         private void GenerateFairies(int[] times, ParticleManager manager)

@@ -170,13 +170,19 @@ public class ParticleManager
         for(int i = 0; i < intensity * 7.5; i++)
         {
             int particleSpeed = generator.Random(70000, 100000)/(intensity*10);
+            int posX = generator.Random(-107, 747);
+            int endX = generator.Random(posX - 20, posX + 20);
+
+            double angle = Math.Atan2(680 - 0, endX - posX);
+
             var sprite = generator.GetLayer("PARTICLES").CreateSprite("sb/pl.png", OsbOrigin.Centre, new Vector2(generator.Random(-107, 747), 0));
             sprite.StartLoopGroup(startTime + (i * 100), duration/particleSpeed);
             sprite.MoveY(0, particleSpeed, -100, 580);
+            sprite.MoveX(0, particleSpeed, posX, endX);
+            sprite.Rotate(0, particleSpeed, Math.PI/2, angle);
             sprite.EndGroup();
             sprite.Fade(startTime, generator.Random(0.1, 0.4));
             sprite.Scale(startTime, (1f/particleSpeed)*20 );
-            sprite.Rotate(startTime, Math.PI/2);
         }
     }
 }

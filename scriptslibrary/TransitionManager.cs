@@ -1,3 +1,4 @@
+using System;
 using OpenTK;
 using OpenTK.Graphics;
 using StorybrewCommon.Scripting;
@@ -26,6 +27,35 @@ public class TransitionManager
             
             delay += transitionDuration/60;
             posX += 900/60;
+        }
+    }
+    public void SquareTransition(int startTime, int endTime, bool In, int squareScale, Color4 color, OsbEasing easing)
+    {
+        int posX = -107;
+        int posY = 0;
+
+        while(posX < 747 + squareScale)
+        {
+            while(posY < 480 + squareScale)
+            {
+                var sprite = generator.GetLayer("TRANSITION").CreateSprite("sb/p.png", OsbOrigin.Centre, new Vector2(posX, posY));
+                sprite.Fade(startTime, endTime, 1, 1);
+                
+                if(In)
+                {
+                    sprite.Scale(easing, startTime, endTime, 0, squareScale);
+                    sprite.Rotate(easing, startTime, endTime, Math.PI, 0);
+                }
+                else
+                {
+                    sprite.Scale(easing, startTime, endTime, squareScale, 0);
+                    sprite.Rotate(easing, startTime, endTime, 0, Math.PI);        
+                }
+                sprite.Color(startTime, color);
+                posY += squareScale;
+            }
+            posY = 0;
+            posX += squareScale;
         }
     }
 }
