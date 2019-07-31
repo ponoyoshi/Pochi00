@@ -173,7 +173,7 @@ namespace StorybrewScripts
             particleManager.GenerateFog(401877, 423210, 450, 30, 20);
             shapeManager.GenerateEmptySquare(new Vector2(320, 240), 421877, 423210, 500, 0, true, OsbEasing.InExpo);
             shapeManager.GenerateEmptySquare(new Vector2(320, 240), 423210, 424543, 0, 300, false, OsbEasing.OutExpo);
-            shapeManager.GenerateEmptySquare(new Vector2(320, 240), 401543, 404543, 0, 500, false, OsbEasing.OutExpo);
+            shapeManager.GenerateEmptySquare(new Vector2(320, 240), 401543, 401877, 0, 500, false, OsbEasing.OutExpo);
 
             particleManager.GenerateFairy(376173, new Vector2(320, 240));
             transitionManager.SquareTransition(377261, 380543, true, 30, new Color4(.13F, .1f, .1f, 1), OsbEasing.InExpo);
@@ -183,14 +183,32 @@ namespace StorybrewScripts
             flatBackground.GenerateFlash(380543, 3000);
             transitionManager.TransitionLines(465210, 465543, 465877);
 
-            int basesize = 10;
-            for(int i2 = 400543; i2 < 401210; i2 += 84)
+            //INTRODUCTION SECTION 24
+            float scale = 0.3f;
+            for(int i = 400543; i < 401210; i += 84)
             {
-                shapeManager.GenerateEmptySquare(new Vector2(320, 240), i2, i2 + 3000, 0, basesize, false, OsbEasing.OutExpo);
-                basesize += 100;
+                var sprite = GetLayer("PARTICLES").CreateSprite("sb/c2.png");
+                sprite.Fade(i, 401877, 1, 1);
+                sprite.Scale(OsbEasing.OutExpo, i, i + 1000, 0, scale);
+                scale *= 1.1f;
             }
             
-            
+            flatBackground.GenerateGradientBackground(423210, 433877, new Color4(.1f, .1f, .1f, 1), Color4.Black);
+            flatBackground.GenerateGradientBackground(433877, 444543, new Color4(.15f, .12f, .1f, 1), Color4.Black);
+
+            textManager.GenerateTextVerticlalLetter("I am alone", 359006, 364799, new Vector2(320, 230), 0.15f, "Italic");
+            textManager.GenerateTextVerticlalLetter("love passes by", 359833, 364799, new Vector2(320, 250), 0.15f, "Italic");
+
+            textManager.GenerateTextVerticlalLetter("crying tears,", 365626, 370259, new Vector2(320, 230), 0.15f, "Italic");
+            textManager.GenerateTextVerticlalLetter("I wonder why", 366454, 370259, new Vector2(320, 250), 0.15f, "Italic");
+
+            textManager.GenerateTextVerticlalLetter("I cannot find", 371215, 376173, new Vector2(320, 230), 0.15f, "Italic");
+            textManager.GenerateTextVerticlalLetter("what others found.", 371782, 376173, new Vector2(320, 250), 0.15f, "Italic");
+
+            shapeManager.GenerateEmptySquare(new Vector2(320, 240), 379450, 380543, 500, 0, true, OsbEasing.InExpo);
+            flatBackground.GenerateColorBackground(359006, 380543, new Color4(0.02f, 0.05f, 0.05f, 1));
+
+            particleManager.GenerateMovingLights(473877, 527210);
         }
         private void GenerateFairies(int[] times, ParticleManager manager)
         {

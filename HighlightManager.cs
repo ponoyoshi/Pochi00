@@ -60,6 +60,29 @@ namespace StorybrewScripts
             GenerateVerticalBar(PianoHits, DumHits);
             // I know that it's duplicated xD
             // But effect 
+
+            //Section 21
+            GeneratePiano(359006, 376441);
+        }
+        public void GeneratePiano(int startTime, int endTime)
+        {
+            foreach(var hitobject in Beatmap.HitObjects)
+            {
+                if ((startTime != 0 || endTime != 0) &&
+                    (hitobject.StartTime < startTime - 5 || endTime - 5 <= hitobject.StartTime))
+                    continue;
+
+                
+                var sprite = GetLayer("").CreateSprite("sb/grad.png", OsbOrigin.CentreLeft, new Vector2(hitobject.Position.X, 450));
+                sprite.Fade(hitobject.StartTime, hitobject.StartTime + 1000, 0.5, 0);
+                sprite.Rotate(hitobject.StartTime, -Math.PI/2);
+                sprite.ScaleVec(OsbEasing.OutExpo, hitobject.StartTime, hitobject.StartTime + 3000, 0.3, 0.5, 0.3, 0);
+
+                var sprite2 = GetLayer("").CreateSprite("sb/grad.png", OsbOrigin.CentreLeft, new Vector2(hitobject.Position.X, 30));
+                sprite2.Fade(hitobject.StartTime, hitobject.StartTime + 1000, 0.5, 0);
+                sprite2.Rotate(hitobject.StartTime, Math.PI/2);
+                sprite2.ScaleVec(OsbEasing.OutExpo, hitobject.StartTime, hitobject.StartTime + 3000, 0.3, 0.5, 0.3, 0);
+            }
         }
 
         public void GenerateRing(int BeatDivisor, int StartTime, int EndTime, string SpritePath, float StartScale, float EndScale, int FadeTime, float Fade, OsbEasing Easing, bool UseHitobjectColor)

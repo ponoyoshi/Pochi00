@@ -33,13 +33,15 @@ public class TextManager
             var letterPosition = new Vector2(letterX, letterY)
                 + texture.OffsetFor(OsbOrigin.Centre) *scale;
 
-            
-            var sprite = generator.GetLayer("TEXT").CreateSprite(texture.Path, OsbOrigin.Centre, letterPosition);
-            sprite.Fade(startTime + delay, startTime + delay + 1000, 0, 1);
-            sprite.Fade(endTime + delay, endTime + delay + 300, 1, 0);
-            sprite.Scale(startTime, scale);
-            sprite.MoveY(OsbEasing.OutExpo, startTime + delay, startTime + delay + 1000, letterPosition.Y + generator.Random(-30, 30), letterPosition.Y);
+            if(!texture.IsEmpty)
+            {
+                var sprite = generator.GetLayer("TEXT").CreateSprite(texture.Path, OsbOrigin.Centre, letterPosition);
+                sprite.Fade(startTime + delay, startTime + delay + 1000, 0, 1);
+                sprite.Fade(endTime + delay, endTime + delay + 300, 1, 0);
+                sprite.Scale(startTime, scale);
+                sprite.MoveY(OsbEasing.OutExpo, startTime + delay, startTime + delay + 1000, letterPosition.Y + generator.Random(-30, 30), letterPosition.Y);
 
+            }
             delay += 100;
             letterX += texture.BaseWidth * scale;
         }

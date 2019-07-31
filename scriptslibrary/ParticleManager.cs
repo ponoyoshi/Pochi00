@@ -183,6 +183,35 @@ public class ParticleManager
             sprite.EndGroup();
             sprite.Fade(startTime, generator.Random(0.1, 0.4));
             sprite.Scale(startTime, (1f/particleSpeed)*20 );
+
+            var splash = generator.GetLayer("PARTICLES").CreateSprite("sb/d.png", OsbOrigin.Centre, new Vector2(posX, 480));
+            splash.StartLoopGroup(startTime + (i * 100) + particleSpeed, duration/particleSpeed);
+            splash.MoveY(OsbEasing.OutExpo, 0, 300, 480, generator.Random(400, 450));
+            splash.Fade(OsbEasing.OutExpo, 0, particleSpeed, 1, 0);
+            splash.Scale(OsbEasing.OutExpo, 0, particleSpeed, 0.05, 0);
+            splash.EndGroup();
+        }
+    }
+    public void GenerateMovingLights(int startTime, int endTime)
+    {
+        for(int i = startTime; i < endTime; i += generator.Random(20, 300))
+        {
+            int duration = generator.Random(5000, 8000);
+            double angle = generator.Random(0, Math.PI*2);
+            float radius = generator.Random(20, 500);
+            var startPos = new Vector2(generator.Random(-107, 747), generator.Random(0, 480));
+            var endPos = new Vector2(
+                (float)(startPos.X + Math.Cos(angle) * radius),
+                (float)(startPos.Y + Math.Sin(angle) * radius)
+            );
+            var sprite = generator.GetLayer("Particles").CreateSprite("sb/hl.png", OsbOrigin.Centre, startPos);
+                
+            sprite.Move(OsbEasing.InOutSine, i, i + duration, startPos, endPos);
+            sprite.Scale(i, generator.Random(0.5, 1));
+            sprite.Fade(i, i + 1000, 0, 0.1);
+            sprite.Fade(i + duration - 1000, i + duration, 0.1, 0);
+            sprite.Additive(i, i + duration);
+                
         }
     }
 }
