@@ -63,6 +63,24 @@ namespace StorybrewScripts
 
             //Section 21
             GeneratePiano(359006, 376441);
+
+            //Section 23
+            List<double> t23 = new List<double>();
+            for(double i23 = 380543; i23 < 401877; i23 += Beatmap.GetTimingPointAt(380543).BeatDuration * 1.5f)
+            {
+                t23.Add(i23);
+            }
+            foreach(var hitobject in Beatmap.HitObjects)
+            {
+                foreach(var time in t23)
+                {
+                    if(hitobject.StartTime > time - 10 && hitobject.StartTime < time + 10)
+                    {
+                        GenerateCircle(hitobject.StartTime, hitobject.Position);
+                    }
+                }
+            }
+
         }
         public void GeneratePiano(int startTime, int endTime)
         {
@@ -221,6 +239,12 @@ namespace StorybrewScripts
                     sprite.Color(Hit, Color4.GreenYellow);
                 }
             }
+        }
+        private void GenerateCircle(double startTime, Vector2 position)
+        {
+            var sprite = GetLayer("").CreateSprite("sb/c2.png", OsbOrigin.Centre, position);
+            sprite.Fade(startTime, startTime + 1000, 0.5, 0);
+            sprite.ScaleVec(OsbEasing.OutExpo, startTime, startTime + 500, 0, 0.3, position.Y/1000, position.Y/5000);
         }
     }
 }

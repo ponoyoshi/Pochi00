@@ -315,11 +315,11 @@ namespace StorybrewScripts
             spriteTop.Fade(startTime, endTime + 1000, 1, 1);
             spriteBot.Fade(startTime, endTime + 1000, 1, 1);
 
-            spriteTop.ScaleVec(OsbEasing.OutSine, startTime, startTime + 1000, 854, 0, 854, 30);
-            spriteBot.ScaleVec(OsbEasing.OutSine, startTime, startTime + 1000, 854, 0, 854, 30);
+            spriteTop.ScaleVec(OsbEasing.OutSine, startTime, startTime + 1000, 854, 0, 854, 40);
+            spriteBot.ScaleVec(OsbEasing.OutSine, startTime, startTime + 1000, 854, 0, 854, 40);
 
-            spriteTop.ScaleVec(OsbEasing.OutSine, endTime, endTime + 1000, 854, 50, 854, 0);
-            spriteBot.ScaleVec(OsbEasing.OutSine, endTime, endTime + 1000, 854, 50, 854, 0);
+            spriteTop.ScaleVec(OsbEasing.OutSine, endTime, endTime + 1000, 854, 40, 854, 0);
+            spriteBot.ScaleVec(OsbEasing.OutSine, endTime, endTime + 1000, 854, 40, 854, 0);
 
         }
     }

@@ -209,6 +209,9 @@ namespace StorybrewScripts
             flatBackground.GenerateColorBackground(359006, 380543, new Color4(0.02f, 0.05f, 0.05f, 1));
 
             particleManager.GenerateMovingLights(473877, 527210);
+
+            shapeManager.GenerateGears(423210, 444543, 40);
+            shapeManager.GenerateGears(500543, 553877, 40);
         }
         private void GenerateFairies(int[] times, ParticleManager manager)
         {
