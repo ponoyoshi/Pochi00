@@ -243,7 +243,7 @@ namespace StorybrewScripts
             gear2.Fade(500543, 501877, 0, 0.1);
             gear2.Rotate(500543, 527210, 0, Math.PI*2);
             gear2.Fade(527210, 527210, 0.1, 0);
-            gear2.Scale(500543, 0.4);
+            gear2.Scale(500543, 0.4); 
         }
         private void GenerateFairies(int[] times, ParticleManager manager)
         {
