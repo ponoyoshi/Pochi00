@@ -49,7 +49,7 @@ public class TransitionManager
                 else
                 {
                     sprite.Scale(easing, startTime, endTime, squareScale, 0);
-                    sprite.Rotate(easing, startTime, endTime, 0, Math.PI);        
+                    sprite.Rotate(easing, startTime, endTime, 0, -Math.PI);        
                 }
                 sprite.Color(startTime, color);
                 posY += squareScale;

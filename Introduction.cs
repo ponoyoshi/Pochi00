@@ -136,8 +136,15 @@ namespace StorybrewScripts
             flatBackground.GenerateFlash(156011, 5000);
             flatBackground.GenerateFlash(178678, 2000);
             flatBackground.GenerateFlash(195011, 1000);
+            flatBackground.GenerateFlash(484543, 1000);
+            flatBackground.GenerateFlash(473877, 2000);
 
             particleManager.GenerateParticlesMoveUp(229902, 274592);
+
+            transitionManager.SquareTransition(574877, 575210, true, 50, Color4.Black, OsbEasing.InSine);
+            transitionManager.SquareTransition(575210, 576543, false, 50, Color4.Black, OsbEasing.OutSine);
+
+            
 
 
             foreach(var hitobject in Beatmap.HitObjects)
@@ -212,6 +219,31 @@ namespace StorybrewScripts
 
             shapeManager.GenerateGears(423210, 444543, 40);
             shapeManager.GenerateGears(500543, 553877, 40);
+
+            flatBackground.GenerateFlash(527210, 3000);
+            flatBackground.GenerateFlash(553877, 3000);
+
+            particleManager.GenerateParticlesMoveUp(527210, 543210);
+
+            GearTransition();
+
+            var gear0 = GetLayer("FOGBACK").CreateSprite("sb/g/g6.png");
+            gear0.Fade(500543, 501877, 0, 0.1);
+            gear0.Rotate(500543, 527210, 0, Math.PI);
+            gear0.Fade(527210, 527210, 0.1, 0);
+            gear0.Scale(500543, 0.7);
+
+            var gear1 = GetLayer("FOGBACK").CreateSprite("sb/g/g4.png");
+            gear1.Fade(500543, 501877, 0, 0.1);
+            gear1.Rotate(500543, 527210, 0, -Math.PI);
+            gear1.Fade(527210, 527210, 0.1, 0);
+            gear1.Scale(500543, 0.1);
+
+            var gear2 = GetLayer("FOGBACK").CreateSprite("sb/g/g6.png");
+            gear2.Fade(500543, 501877, 0, 0.1);
+            gear2.Rotate(500543, 527210, 0, Math.PI*2);
+            gear2.Fade(527210, 527210, 0.1, 0);
+            gear2.Scale(500543, 0.4);
         }
         private void GenerateFairies(int[] times, ParticleManager manager)
         {
@@ -225,6 +257,27 @@ namespace StorybrewScripts
                     }
                 }
             }
+        }
+        private void GearTransition()
+        {
+            Gear(552543, 2, 553543, 0.05);
+            Gear(552710, 6, 553543, 0.12);
+            Gear(552877, 5, 553543, 0.12);
+            Gear(552960, 6, 553543, 0.35);
+            Gear(553043, 6, 553543, 0.5);
+            Gear(553127, 6, 553543, 0.7);
+            Gear(553210, 5, 553543, 0.7);
+        }
+        private void Gear(int startTime, int id, int endTime, double scale)
+        {
+            var sprite = GetLayer("SHAPES").CreateSprite($"sb/g/g{id}.png");
+            sprite.Fade(startTime, startTime + 100, 0, 1);
+            sprite.Fade(OsbEasing.OutExpo, endTime, endTime + 1000, 1, 0.1);
+            sprite.Scale(OsbEasing.OutBack, startTime, startTime + 100, scale - 0.1, scale);
+            sprite.Rotate(OsbEasing.OutExpo, endTime, endTime + 1000, Random(-Math.PI, Math.PI), 0);
+
+            sprite.Fade(553877, 575210, 0.1, 0.1);
+            sprite.Rotate(OsbEasing.InSine, endTime + 1000, 575210, 0, Random(-Math.PI, Math.PI));
         }
     }
 }

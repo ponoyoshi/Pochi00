@@ -244,7 +244,7 @@ namespace StorybrewScripts
         {
             var sprite = GetLayer("").CreateSprite("sb/c2.png", OsbOrigin.Centre, position);
             sprite.Fade(startTime, startTime + 1000, 0.5, 0);
-            sprite.ScaleVec(OsbEasing.OutExpo, startTime, startTime + 500, 0, 0.3, position.Y/1000, position.Y/5000);
+            sprite.ScaleVec(OsbEasing.OutExpo, startTime, startTime + 500, 0, position.Y/5000, position.Y/1000, position.Y/5000);
         }
     }
 }

@@ -123,6 +123,12 @@ namespace StorybrewScripts
             ModifyScale(423210, 433877, 150);
             SetClockSpeed(423210, 445877, beat*2);
             
+            beat = Beatmap.GetTimingPointAt(501877).BeatDuration;
+
+            ShowClock(501877, 503210, 527210, 528543, 1, false);
+            SetClockSpeed(501877, 527210, beat*2);
+            ModifyScale(500543, 500627, 100);
+            ShowHours(501877, 527210, 120);
 
 
         }
