@@ -46,7 +46,7 @@ public class TextManager
             letterX += texture.BaseWidth * scale;
         }
     }
-    public void GenerateRotatingText(string text, int startTime, int endTime, Vector2 position, float scale, int speed, string fontStyle = "Regular")
+    public void GenerateRotatingText(OsbEasing easing, string text, int startTime, int endTime, Vector2 position, float scale, float fade, int speed, string fontStyle = "Regular")
     {
         if(fontlibrary == null)
             fontlibrary = new FontLibrary(generator);
@@ -70,10 +70,10 @@ public class TextManager
            
                 var sprite = generator.GetLayer("TEXT").CreateSprite(texture.Path, OsbOrigin.Centre, letterPosition);
                 sprite.StartLoopGroup(startTime + delay, duration/speed);
-                sprite.MoveX(OsbEasing.InOutSine, 0, speed, position.X + SentenceOptions.Width, position.X - SentenceOptions.Width);
-                sprite.Fade(OsbEasing.InOutSine, 0, 1000, 0, 1);
-                sprite.Fade(OsbEasing.InOutSine, 1000, speed - 1000, 1, 1);
-                sprite.Fade(OsbEasing.InOutSine, speed - 1000, speed, 1, 0);
+                sprite.MoveX(easing, 0, speed, position.X + SentenceOptions.Width, position.X - SentenceOptions.Width);
+                sprite.Fade(OsbEasing.InOutSine, 0, 1000, 0, fade);
+                sprite.Fade(OsbEasing.InOutSine, 1000, speed - 1000, fade, fade);
+                sprite.Fade(OsbEasing.InOutSine, speed - 1000, speed, fade, 0);
                 sprite.ScaleVec(OsbEasing.InOutSine, 0, speed/2, 0, scale, scale, scale);
                 sprite.ScaleVec(OsbEasing.InOutSine, speed/2, speed, scale, scale, 0, scale);
                 sprite.EndGroup();

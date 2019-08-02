@@ -160,7 +160,7 @@ namespace StorybrewScripts
             var Beat = Beatmap.GetTimingPointAt(StartTime).BeatDuration / 1;
 
             TextManager textmanager = new TextManager(this);
-            textmanager.GenerateRotatingText("alexithymia", StartTime, EndTime, position, 0.16f, (int)Beat * 12, "Regular");
+            textmanager.GenerateRotatingText(OsbEasing.InOutSine, "alexithymia", StartTime, EndTime, position, 0.16f, 1, (int)Beat * 12, "Regular");
         }
     }
 }
