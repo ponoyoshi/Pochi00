@@ -244,6 +244,15 @@ namespace StorybrewScripts
             gear2.Rotate(500543, 527210, 0, Math.PI*2);
             gear2.Fade(527210, 527210, 0.1, 0);
             gear2.Scale(500543, 0.4); 
+
+            particleManager.GenerateMovingLights(608543, 629877);
+
+
+            //CREDITS
+            textManager.GenerateTextVerticlalLetter("[ BEATMAP ]", 629877, 635210, new Vector2(320, 220), 0.15f, "Italic");
+            textManager.GenerateTextVerticlalLetter("PROFESSIONALBOX", 629877, 635210, new Vector2(320, 240), 0.15f, "Italic");
+            textManager.GenerateTextVerticlalLetter("[ STORYBOARD ]", 629877, 635210, new Vector2(320, 270), 0.15f, "Italic");
+            textManager.GenerateTextVerticlalLetter("TOCHI & PONO", 629877, 635210, new Vector2(320, 290), 0.15f, "Italic");
         }
         private void GenerateFairies(int[] times, ParticleManager manager)
         {
