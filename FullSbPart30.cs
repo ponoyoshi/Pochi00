@@ -26,7 +26,7 @@ namespace StorybrewScripts
         public void BG()
         {
             var bitmap = GetMapsetBitmap("sb/p.png");
-            var bg = GetLayer("Background").CreateSprite("sb/p.png", OsbOrigin.Centre);
+            var bg = GetLayer("").CreateSprite("sb/p.png", OsbOrigin.Centre);
 
             bg.Scale(527210, 854.0f / bitmap.Width);
             // bg.Color(527210, Color4.White);
