@@ -11,7 +11,7 @@ namespace StorybrewScripts
             GenerateVignette(124011, 145345);
             GenerateVignette(277902, 289488);
             GenerateVignette(465877, 473877);
-            GenerateVignette(500543, 527210);
+            GenerateVignette(500543, 553877);
         }
         
         private void GenerateVignette(int StartTime, int EndTime)
