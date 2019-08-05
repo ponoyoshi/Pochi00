@@ -3,6 +3,7 @@ using OpenTK;
 using OpenTK.Graphics;
 using StorybrewCommon.Scripting;
 using StorybrewCommon.Storyboarding;
+using StorybrewCommon.Storyboarding.Util;
 
 public class ParticleManager
 {
@@ -163,7 +164,6 @@ public class ParticleManager
 
         GenerateFairy(startTime, position, 1000, 3000);
     }
-
     public void GenerateRain(int startTime, int endTime, int intensity)
     {
         var duration = endTime - startTime;
@@ -210,8 +210,87 @@ public class ParticleManager
             sprite.Scale(i, generator.Random(0.5, 1));
             sprite.Fade(i, i + 1000, 0, 0.1);
             sprite.Fade(i + duration - 1000, i + duration, 0.1, 0);
-            sprite.Additive(i, i + duration);
-                
+            sprite.Additive(i, i + duration);   
+        }
+    }
+    public void GenerateCircularParticles(int startTime, int endTime)
+    {
+        for(int i = 0; i < 600; i++)
+        {
+            int radius = generator.Random(200, 450);
+            double angle = generator.Random(0, Math.PI*2);
+            double scale = generator.Random(0.02, 0.04);
+            int flashTime = generator.Random(1000, 5000);
+            int duration = endTime - startTime;
+
+            Vector2 position = new Vector2(
+                (float)(320 + Math.Cos(angle) * radius),
+                (float)(240 + Math.Sin(angle) * radius)
+            );
+
+            double nPosX = (position.X - 320) * 2;
+            double nPosY = (position.Y - 240) * 2;
+
+            var sprite = generator.GetLayer("").CreateSprite("sb/d.png", OsbOrigin.Centre);
+            sprite.Fade(startTime, startTime + generator.Random(1000, 3000), 0, 1);
+
+            sprite.StartLoopGroup(startTime, duration/flashTime);
+            sprite.Scale(0, flashTime, scale, 0);
+            sprite.EndGroup();
+
+            for(int time = startTime; time < endTime; time += 1000)
+            {
+                angle+=0.03;
+
+                Vector2 nPosition = new Vector2(
+                    (float)(320 + Math.Cos(angle) * radius),
+                    (float)(240 + Math.Sin(angle) * radius)
+                );
+
+                sprite.Move(time, time + 1000, position, nPosition);
+
+                position = nPosition;
+            }
+        }      
+    }
+    public void GenerateCircularMovingParticles(int startTime, int endTime)
+    {
+        for(int i = 0; i < 400; i++)
+        {
+            int radius = generator.Random(280, 450);
+            double angle = generator.Random(0, Math.PI*2);
+            double scale = generator.Random(0.02, 0.04);
+            int flashTime = generator.Random(1000, 5000);
+            int duration = endTime - startTime;
+
+            Vector2 position = new Vector2(
+                (float)(320 + Math.Cos(angle) * radius),
+                (float)(240 + Math.Sin(angle) * radius)
+            );
+
+            double nPosX = (position.X - 320) * 2;
+            double nPosY = (position.Y - 240) * 2;
+
+            var sprite = generator.GetLayer("").CreateSprite("sb/d.png", OsbOrigin.Centre);
+            sprite.Fade(startTime, startTime + generator.Random(1000, 3000), 0, 1);
+
+            sprite.StartLoopGroup(startTime, duration/flashTime);
+            sprite.Scale(0, flashTime, scale, 0);
+            sprite.EndGroup();
+
+            for(int time = startTime; time < endTime; time += 1000)
+            {
+                angle+=0.03;
+
+                Vector2 nPosition = new Vector2(
+                    (float)(320 + Math.Cos(angle) * radius),
+                    (float)(240 + Math.Sin(angle) * radius)
+                );
+
+                sprite.Move(time, time + 1000, position, nPosition);
+
+                position = nPosition;
+            }
         }
     }
 }

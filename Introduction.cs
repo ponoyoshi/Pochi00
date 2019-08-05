@@ -180,7 +180,7 @@ namespace StorybrewScripts
             particleManager.GenerateFog(401877, 423210, 450, 30, 20);
             shapeManager.GenerateEmptySquare(new Vector2(320, 240), 421877, 423210, 500, 0, true, OsbEasing.InExpo);
             shapeManager.GenerateEmptySquare(new Vector2(320, 240), 423210, 424543, 0, 300, false, OsbEasing.OutExpo);
-            shapeManager.GenerateEmptySquare(new Vector2(320, 240), 401543, 401877, 0, 500, false, OsbEasing.OutExpo);
+            shapeManager.GenerateEmptySquare(new Vector2(320, 240), 401543, 401877, 0, 300, false, OsbEasing.OutExpo);
 
             particleManager.GenerateFairy(376173, new Vector2(320, 240));
             transitionManager.SquareTransition(377261, 380543, true, 30, new Color4(.13F, .1f, .1f, 1), OsbEasing.InExpo);
@@ -253,6 +253,9 @@ namespace StorybrewScripts
             textManager.GenerateTextVerticlalLetter("PROFESSIONALBOX", 629877, 635210, new Vector2(320, 240), 0.15f, "Italic");
             textManager.GenerateTextVerticlalLetter("[ STORYBOARD ]", 629877, 635210, new Vector2(320, 270), 0.15f, "Italic");
             textManager.GenerateTextVerticlalLetter("TOCHI & PONO", 629877, 635210, new Vector2(320, 290), 0.15f, "Italic");
+
+
+            particleManager.GenerateCircularMovingParticles(302833, 315971);
         }
         private void GenerateFairies(int[] times, ParticleManager manager)
         {

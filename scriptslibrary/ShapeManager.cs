@@ -13,6 +13,7 @@ public class ShapeManager
     public void GenerateEmptySquare(Vector2 position, int startTime, int endTime, double startScale, double endScale, bool upScale, OsbEasing easing = OsbEasing.OutExpo)
     {
         double angle = 0;
+        int duration = endTime - startTime;
         for(int i = 0; i < 4; i++)
         {
             var startPosition = new Vector2(
@@ -32,6 +33,10 @@ public class ShapeManager
             sprite.ScaleVec(easing, startTime, endTime, upScale ? 0 : 50, startBorderScale + (upScale ? 0 : 25), upScale ? 50 : 0, endBorderScale + (upScale ? 25 : 0));
             sprite.Rotate(startTime, angle - Math.PI/4);
             sprite.Move(easing, startTime, endTime, startPosition, endPosition);
+            
+            if(!upScale)
+                sprite.Fade(endTime - duration/2, endTime - duration/5, 1, 0);
+
             angle += Math.PI/2;
         }
     }
