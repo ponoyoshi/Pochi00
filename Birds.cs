@@ -18,11 +18,11 @@ namespace StorybrewScripts
     {
         public override void Generate()
         {
-            FlyingBirds(587210, 608543, 20, false, true);
-            FlyingBirds(587210, 608543, 15, true, false);
+            FlyingBirds(3500, 7000, 20, 30, 587210, 608543, 30, false, true, 0.02, 0.05);
+            FlyingBirds(3500, 7000, 20, 30, 587210, 608543, 30, true, false, 0.02, 0.05);
         }
 
-        private void FlyingBirds(int StartTime, int EndTime, int SpriteAmount, bool right, bool left)
+        private void FlyingBirds(int MinDuration, int MaxDuration, int FlyingSpeed, int Acceleration, int StartTime, int EndTime, int SpriteAmount, bool right, bool left, double ScaleMin, double ScaleMax)
         {
             // normally configurables:
 
@@ -36,13 +36,7 @@ namespace StorybrewScripts
             int FadeTimeIn = 2000;
             int FadeTimeOut = 500;
             bool RandomScale = true;
-            double ScaleMin = 0.02;
-            double ScaleMax = 0.05;
             bool RandomDuration = true;
-            int MinDuration = 3500;
-            int MaxDuration = 7000;
-            int FlyingSpeed = 20;
-            int Acceleration = 30;
             bool Additive = false;
             int NewColorEvery = 1;
             Color4 Color = Color4.White;

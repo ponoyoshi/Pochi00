@@ -53,6 +53,7 @@
   -->
   <ItemGroup>
     <Compile Include="BackgroundManager.cs" />
+    <Compile Include="Birds.cs" />
     <Compile Include="Clock.cs" />
     <Compile Include="DebugTimestamps.cs" />
     <Compile Include="FullSbPart07.cs" />
