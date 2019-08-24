@@ -20,6 +20,7 @@ namespace StorybrewScripts
             Background();
             Butterflies();
             Circles();
+            Flares();
         }
 
         public void PianoHighlights()
@@ -240,6 +241,35 @@ namespace StorybrewScripts
                 }
                 angle += ConnectionAngle / (amount / 2);
             }
+        }
+
+        public void Flares()
+        {
+            var sprite = GetLayer("").CreateSprite("sb/flare.jpg", OsbOrigin.Centre);
+            var sprite2 = GetLayer("").CreateSprite("sb/flare2.jpg", OsbOrigin.TopLeft);
+
+            var startTime = 444543;
+            var endTime = 465877;
+            var Beat = Beatmap.GetTimingPointAt(startTime).BeatDuration;
+            var Fade = 0.8;
+
+            sprite.Scale(startTime, 0.6);
+            sprite.Move(startTime, endTime, 727, 40, 747, 40);
+            sprite.Additive(startTime, endTime);
+            sprite.Fade(startTime, startTime + 2000, 0, Fade);
+            sprite.Fade(startTime + 2000, endTime - (Beat * 3), Fade, Fade);
+            sprite.Fade(endTime - (Beat * 3), endTime - (Beat * 2), Fade, 0);
+
+            var Rotation = MathHelper.DegreesToRadians(90);
+            var Rotation2 = MathHelper.DegreesToRadians(120);
+            
+            sprite2.Scale(startTime, 0.6);
+            sprite2.Move(startTime, endTime, 727, 40, 747, 40);
+            sprite2.Additive(startTime, endTime);
+            sprite2.Fade(startTime, startTime + 2000, 0, Fade);
+            sprite2.Fade(startTime + 2000, endTime - (Beat * 3), Fade, Fade);
+            sprite2.Fade(endTime - (Beat * 3), endTime - (Beat * 2), Fade, 0);
+            sprite2.Rotate(startTime, endTime, Rotation, Rotation2);
         }
     }
 }

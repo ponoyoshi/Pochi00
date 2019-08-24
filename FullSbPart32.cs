@@ -26,6 +26,7 @@ namespace StorybrewScripts
             };
 
             GenerateVerticalBar(PianoHits);
+            GodRays();
         }
 
         private void GenerateVerticalBar(int[] pianoHits)
@@ -50,6 +51,34 @@ namespace StorybrewScripts
                         sprite.Color(hit, hitobject.Color);
                     }
                 }
+            }
+        }
+
+        private void GodRays()
+        {
+            for (int i = 0; i < 20 ; i++)
+            {
+                var sprite = GetLayer("").CreateSprite("sb/light.png", OsbOrigin.CentreLeft);
+                var rotateStart = MathHelper.DegreesToRadians(Random(80, 100));
+                var rotateEnd = MathHelper.DegreesToRadians(Random(75, 115));
+                var RandomDuration = Random(4000, 7000);
+                var loopCount = (615210 - 587210) / (RandomDuration * 2);
+
+                sprite.StartLoopGroup(587210, (int)loopCount);
+                sprite.Rotate(0, RandomDuration, rotateStart, rotateEnd);
+                sprite.Rotate(RandomDuration, RandomDuration * 2, rotateEnd, rotateStart);
+                sprite.EndGroup();
+
+                var Fade = Random(0.1f, 0.3f);
+                sprite.StartLoopGroup(587210, (int)loopCount);
+                sprite.Move(0, new Vector2(Random(0, 640), -50));
+                sprite.Fade(0, 1500, 0, Fade);
+                sprite.Fade(1500, (RandomDuration * 2) - 1500, Fade, Fade);
+                sprite.Fade((RandomDuration * 2) - 1500, RandomDuration * 2, Fade, 0);
+                sprite.EndGroup();
+
+                sprite.Scale(587210, 0.8);
+                sprite.Additive(587210, 615210);
             }
         }
     }
