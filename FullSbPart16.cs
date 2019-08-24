@@ -22,6 +22,7 @@ namespace StorybrewScripts
             Squares2Glitch2();
             Squares3();
             Blank();
+            RingsStuff();
         }
 
         public void Squares()
@@ -466,6 +467,80 @@ namespace StorybrewScripts
                 sprite.Additive(hit, hit + 1000);
                 sprite.Fade(hit, hit + 1000, 0.3, 0);
                 sprite.ScaleVec(hit, 854.0f / bitmap.Width, 480.0f / bitmap.Height);
+            }
+        }
+
+        public void RingsStuff()
+        {
+            var blankBitmap = GetMapsetBitmap("sb/p.png");
+            var ring = GetLayer("").CreateSprite("sb/c7.png", OsbOrigin.Centre, new Vector2(320, 240));
+            var ring2 = GetLayer("").CreateSprite("sb/c8.png", OsbOrigin.Centre, new Vector2(320, 240));
+            var blank = GetLayer("").CreateSprite("sb/p.png", OsbOrigin.Centre, new Vector2(320, 240));
+
+            var rotation = MathHelper.DegreesToRadians(120);
+            var startTime = 289488;
+            var endTime = 302730;
+
+            blank.ScaleVec(startTime, 854.0f / blankBitmap.Width, 480.0f / blankBitmap.Height);
+            blank.Fade(startTime, endTime, 0.2, 0.2);
+            blank.Fade(endTime, endTime + 2000, 0.2, 0);
+            blank.Color(startTime, Color4.LightCyan);
+
+            ring.Scale(OsbEasing.Out, startTime, 302730, 0.25, 0.4);
+            ring.Fade(startTime, startTime + 1000, 0, 0.15);
+            ring.Fade(startTime + 1000, endTime, 0.15, 0.3);
+            ring.Fade(endTime, endTime + 2000, 0.8, 0);
+            ring.Rotate(startTime, endTime, 0, -rotation);
+
+            var Beat = Beatmap.GetTimingPointAt(startTime).BeatDuration;
+            var loopAmount = (endTime - startTime) / (Beat * 2);
+            
+            ring2.StartLoopGroup(startTime, (int)loopAmount);
+            ring2.Scale(0, Beat * 2, 0.8, 0.75);
+            ring2.Fade(OsbEasing.Out, 0, Beat * 2, 0.2, 0);
+            ring2.EndGroup();
+
+            // rings stuff
+            int amount = 20;
+            double angle = 0;
+            double radius = 150;
+            for (var i = 0; i < amount; i++)
+            {
+                var Position = new Vector2(320, 240);
+                var ConnectionAngle = Math.PI / amount;
+
+                Vector2 position = new Vector2(
+                    (float)(320 + Math.Cos(angle) * radius),
+                    (float)(240 + Math.Sin(angle) * radius));
+
+
+                var layer = GetLayer("");
+                var lines = layer.CreateSprite("sb/p.png", OsbOrigin.Centre);
+
+                lines.ScaleVec(startTime, 1, 20);
+                lines.Fade(startTime, startTime + 1000, 0, 0.15);
+                lines.Fade(startTime + 1000, endTime, 0.15, 0.8);
+                lines.Fade(endTime, endTime + 2000, 0.4, 0);
+
+                var timeStep = 40;
+                for (double time = startTime; time < endTime; time += timeStep)
+                {
+                    angle += -0.03;
+                    radius += 0.01;
+
+                    Vector2 nPosition = new Vector2(
+                        (float)(320 + Math.Cos(angle) * radius),
+                        (float)(240 + Math.Sin(angle) * radius)
+                    );
+
+                    var Rotation = Math.Atan2((position.Y - nPosition.Y), (position.X - nPosition.X)) - Math.PI / 2f;
+
+                    lines.Move(time, time + timeStep, Position, nPosition);
+                    lines.Rotate(time, time + timeStep, Rotation, Rotation);
+
+                    Position = nPosition;
+                }
+                angle += ConnectionAngle / (amount / 2);
             }
         }
     }
