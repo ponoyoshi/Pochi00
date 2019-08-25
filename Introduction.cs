@@ -171,7 +171,6 @@ namespace StorybrewScripts
             particleManager.GenerateFog(332523, 357351, 420, 20, 20);
             flatBackground.GenerateFlash(332523, 3000);
             flatBackground.GenerateFlash(345764, 2000);
-            particleManager.GenerateLinesPlane(345764, new Vector2(225, 260), Random(0,10) > 5 ? true : false);
 
             particleManager.GenerateRain(380543, 423210, 20);
 
@@ -256,6 +255,8 @@ namespace StorybrewScripts
 
 
             particleManager.GenerateCircularMovingParticles(302833, 315971);
+            particleManager.GenerateRain(587222, 608556, 20);
+            particleManager.GenerateFog(444555, 465889, 400, 50, 10);
         }
         private void GenerateFairies(int[] times, ParticleManager manager)
         {
