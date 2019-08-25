@@ -217,13 +217,13 @@ namespace StorybrewScripts
                     {
                         if (RandomScale)
                         {
-                            if (ScaleMin == ScaleMax && ScaleMin != 1)
-                            {
-                                sprite.ScaleVec(i, ScaleMin, ScaleMin);
-                            }
+                            // if (ScaleMin == ScaleMax && ScaleMin != 1)
+                            // {
+                            //     sprite.ScaleVec(i, ScaleMin, ScaleMin);
+                            // }
 
-                            sprite.ScaleVec(i, RandomScaling, RandomScaling);
-                            sprite.StartLoopGroup(i, EndTime - StartTime / 2);
+                            // sprite.ScaleVec(i, RandomScaling, RandomScaling);
+                            sprite.StartLoopGroup(i, EndTime - StartTime / (Random(FlipInterval, FlipInterval) * 2));
                             sprite.ScaleVec(OsbEasing.In, 0, Random(FlipInterval, FlipInterval), RandomScaling - 0.005, RandomScaling, 0, RandomScaling / 2);
                             sprite.ScaleVec(OsbEasing.Out, Random(FlipInterval, FlipInterval), Random(FlipInterval, FlipInterval) * 2, 0, RandomScaling / 2, RandomScaling - 0.005, RandomScaling);
                             sprite.EndGroup();
