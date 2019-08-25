@@ -78,11 +78,11 @@ namespace StorybrewScripts
                         }
                         else sprite.Color(469877, Color4.Cyan);
 
-                        if (i % 1 == 1)
+                        if (i % 2 == 1)
                         {
                             sprite.Color(471877, Color4.IndianRed);
                         }
-                        else sprite.Color(471877, Color4.IndianRed);
+                        else sprite.Color(471877, Color4.Gold);
 
                         position = nPosition;
                     }
@@ -191,11 +191,11 @@ namespace StorybrewScripts
                     }
                     else sprite.Color(469877, Color4.Cyan);
 
-                    if (i % 1 == 1)
+                    if (i % 2 == 1)
                     {
                         sprite.Color(471877, Color4.IndianRed);
                     }
-                    else sprite.Color(471877, Color4.IndianRed);
+                    else sprite.Color(471877, Color4.Gold);
                 }
             }
         }
