@@ -376,6 +376,7 @@ namespace StorybrewScripts
             };
 
             var speed = 100;
+            var pD = 50; //pD stands for preDelay in this case
             var easingStart = OsbEasing.OutExpo;
             var easingEnd = OsbEasing.InSine;
             var layer = GetLayer("");
@@ -404,22 +405,22 @@ namespace StorybrewScripts
 
                 circle4.Fade(543210, 553293, 1, 1);
                 circle4.ScaleVec(543210, 0.2, 0.2);
-                circle4.MoveY(easingStart, hits, hits + speed, 240 - 50, 240 + 50);
-                circle4.MoveY(easingEnd, hits + speed, hits + (speed * 2), 240 + 50, 240 - 50);
+                circle4.MoveY(easingStart, hits - pD, hits - pD + speed, 240 - 50, 240 + 50);
+                circle4.MoveY(easingEnd, hits - pD + speed, hits - pD + (speed * 2), 240 + 50, 240 - 50);
 
-                arc.Fade(hits + speed, hits + (speed) * 2, 1, 0);
-                arc.ScaleVec(hits + speed, hits + (speed) * 2, 0.2, 0.2, 0.235, 0.2);
-                arc.MoveY(OsbEasing.In, hits + speed, hits + (speed) * 2, 240 + 50, 240 + 70);
+                arc.Fade(hits - pD + speed, hits - pD + (speed) * 2, 1, 0);
+                arc.ScaleVec(hits - pD + speed, hits - pD + (speed) * 2, 0.2, 0.2, 0.235, 0.2);
+                arc.MoveY(OsbEasing.In, hits - pD + speed, hits - pD + (speed) * 2, 240 + 50, 240 + 70);
 
                 foreach (var hitobject in Beatmap.HitObjects)
                 {
-                    if ((hits != 0 || hits + (speed * 2) != 0) &&
-                    (hitobject.StartTime < hits - 5 || hits + (speed * 2) - 5 <= hitobject.StartTime))
+                    if ((hits - pD != 0 || hits - pD + (speed * 2) != 0) &&
+                    (hitobject.StartTime < hits - pD - 5 || hits - pD + (speed * 2) - 5 <= hitobject.StartTime))
                         continue;
 
-                    circle.Color(hits, hits + speed, hitobject.Color, hitobject.Color);
-                    circle4.Color(hits, hits + speed, hitobject.Color, hitobject.Color);
-                    arc.Color(hits + speed, hitobject.Color);
+                    circle.Color(hits - pD, hits - pD + speed, hitobject.Color, hitobject.Color);
+                    circle4.Color(hits - pD, hits - pD + speed, hitobject.Color, hitobject.Color);
+                    arc.Color(hits - pD + speed, hitobject.Color);
                 }
             }
 
@@ -430,22 +431,22 @@ namespace StorybrewScripts
 
                 circle5.Fade(543210, 553293, 1, 1);
                 circle5.ScaleVec(543210, 0.2, 0.2);
-                circle5.MoveY(easingStart, hits, hits + speed, 240 - 50, 240 + 50);
-                circle5.MoveY(easingEnd, hits + speed, hits + (speed * 2), 240 + 50, 240 - 50);
+                circle5.MoveY(easingStart, hits - pD, hits - pD + speed, 240 - 50, 240 + 50);
+                circle5.MoveY(easingEnd, hits - pD + speed, hits - pD + (speed * 2), 240 + 50, 240 - 50);
 
-                arc2.Fade(hits + speed, hits + (speed) * 2, 1, 0);
-                arc2.ScaleVec(hits + speed, hits + (speed) * 2, 0.2, 0.2, 0.235, 0.2);
-                arc2.MoveY(OsbEasing.In, hits + speed, hits + (speed) * 2, 240 + 50, 240 + 70);
+                arc2.Fade(hits - pD + speed, hits - pD + (speed) * 2, 1, 0);
+                arc2.ScaleVec(hits - pD + speed, hits - pD + (speed) * 2, 0.2, 0.2, 0.235, 0.2);
+                arc2.MoveY(OsbEasing.In, hits - pD + speed, hits - pD + (speed) * 2, 240 + 50, 240 + 70);
 
                 foreach (var hitobject in Beatmap.HitObjects)
                 {
-                    if ((hits != 0 || hits + (speed * 2) != 0) &&
-                    (hitobject.StartTime < hits - 5 || hits + (speed * 2) - 5 <= hitobject.StartTime))
+                    if ((hits - pD != 0 || hits - pD + (speed * 2) != 0) &&
+                    (hitobject.StartTime < hits - pD - 5 || hits - pD + (speed * 2) - 5 <= hitobject.StartTime))
                         continue;
 
-                    circle2.Color(hits, hits + speed, hitobject.Color, hitobject.Color);
-                    circle5.Color(hits, hits + speed, hitobject.Color, hitobject.Color);
-                    arc2.Color(hits + speed, hitobject.Color);
+                    circle2.Color(hits - pD, hits - pD + speed, hitobject.Color, hitobject.Color);
+                    circle5.Color(hits - pD, hits - pD + speed, hitobject.Color, hitobject.Color);
+                    arc2.Color(hits - pD + speed, hitobject.Color);
                 }
             }
 
@@ -456,22 +457,22 @@ namespace StorybrewScripts
 
                 circle6.Fade(543210, 553293, 1, 1);
                 circle6.ScaleVec(543210, 0.2, 0.2);
-                circle6.MoveY(easingStart, hits, hits + speed, 240 - 50, 240 + 50);
-                circle6.MoveY(easingEnd, hits + speed, hits + (speed * 2), 240 + 50, 240 - 50);
+                circle6.MoveY(easingStart, hits - pD, hits - pD + speed, 240 - 50, 240 + 50);
+                circle6.MoveY(easingEnd, hits - pD + speed, hits - pD + (speed * 2), 240 + 50, 240 - 50);
 
-                arc3.Fade(hits + speed, hits + (speed) * 2, 1, 0);
-                arc3.ScaleVec(hits + speed, hits + (speed) * 2, 0.2, 0.2, 0.235, 0.2);
-                arc3.MoveY(OsbEasing.In, hits + speed, hits + (speed) * 2, 240 + 50, 240 + 70);
+                arc3.Fade(hits - pD + speed, hits - pD + (speed) * 2, 1, 0);
+                arc3.ScaleVec(hits - pD + speed, hits - pD + (speed) * 2, 0.2, 0.2, 0.235, 0.2);
+                arc3.MoveY(OsbEasing.In, hits - pD + speed, hits - pD + (speed) * 2, 240 + 50, 240 + 70);
 
                 foreach (var hitobject in Beatmap.HitObjects)
                 {
-                    if ((hits != 0 || hits + (speed * 2) != 0) &&
-                    (hitobject.StartTime < hits - 5 || hits + (speed * 2) - 5 <= hitobject.StartTime))
+                    if ((hits - pD != 0 || hits - pD + (speed * 2) != 0) &&
+                    (hitobject.StartTime < hits - pD - 5 || hits - pD + (speed * 2) - 5 <= hitobject.StartTime))
                         continue;
 
-                    circle3.Color(hits, hits + speed, hitobject.Color, hitobject.Color);
-                    circle6.Color(hits, hits + speed, hitobject.Color, hitobject.Color);
-                    arc3.Color(hits + speed, hitobject.Color);
+                    circle3.Color(hits - pD, hits - pD + speed, hitobject.Color, hitobject.Color);
+                    circle6.Color(hits - pD, hits - pD + speed, hitobject.Color, hitobject.Color);
+                    arc3.Color(hits - pD + speed, hitobject.Color);
                 }
             }
 
@@ -480,48 +481,48 @@ namespace StorybrewScripts
             foreach (var hits in pianoHits)
             {
                 sprite.Fade(543210, 553293, 1, 1);
-                sprite.ScaleVec(easingStart, hits, hits + speed, 108.6, 0, 108.6, heightMax);
-                sprite.ScaleVec(easingEnd, hits + speed, hits + (speed * 2), 108.6, heightMax, 108.6, 0);
+                sprite.ScaleVec(easingStart, hits - pD, hits - pD + speed, 108.6, 0, 108.6, heightMax);
+                sprite.ScaleVec(easingEnd, hits - pD + speed, hits - pD + (speed * 2), 108.6, heightMax, 108.6, 0);
 
                 foreach (var hitobject in Beatmap.HitObjects)
                 {
-                    if ((hits != 0 || hits + (speed * 2) != 0) &&
-                    (hitobject.StartTime < hits - 5 || hits + (speed * 2) - 5 <= hitobject.StartTime))
+                    if ((hits - pD != 0 || hits - pD + (speed * 2) != 0) &&
+                    (hitobject.StartTime < hits - pD - 5 || hits - pD + (speed * 2) - 5 <= hitobject.StartTime))
                         continue;
 
-                    sprite.Color(hits, hits + speed, hitobject.Color, hitobject.Color);
+                    sprite.Color(hits - pD, hits - pD + speed, hitobject.Color, hitobject.Color);
                 }
             }
 
             foreach (var hits in pianoHits2)
             {
                 sprite2.Fade(543210, 553293, 1, 1);
-                sprite2.ScaleVec(easingStart, hits, hits + speed, 108.6, 0, 108.6, heightMax);
-                sprite2.ScaleVec(easingEnd, hits + speed, hits + (speed * 2), 108.6, heightMax, 108.6, 0);
+                sprite2.ScaleVec(easingStart, hits - pD, hits - pD + speed, 108.6, 0, 108.6, heightMax);
+                sprite2.ScaleVec(easingEnd, hits - pD + speed, hits - pD + (speed * 2), 108.6, heightMax, 108.6, 0);
 
                 foreach (var hitobject in Beatmap.HitObjects)
                 {
-                    if ((hits != 0 || hits + (speed * 2) != 0) &&
-                    (hitobject.StartTime < hits - 5 || hits + (speed * 2) - 5 <= hitobject.StartTime))
+                    if ((hits - pD != 0 || hits - pD + (speed * 2) != 0) &&
+                    (hitobject.StartTime < hits - pD - 5 || hits - pD + (speed * 2) - 5 <= hitobject.StartTime))
                         continue;
 
-                    sprite2.Color(hits, hits + speed, hitobject.Color, hitobject.Color);
+                    sprite2.Color(hits - pD, hits - pD + speed, hitobject.Color, hitobject.Color);
                 }
             }
 
             foreach (var hits in pianoHits3)
             {
                 sprite3.Fade(543210, 553293, 1, 1);
-                sprite3.ScaleVec(easingStart, hits, hits + speed, 108.6, 0, 108.6, heightMax);
-                sprite3.ScaleVec(easingEnd, hits + speed, hits + (speed * 2), 108.6, heightMax, 108.6, 0);
+                sprite3.ScaleVec(easingStart, hits - pD, hits - pD + speed, 108.6, 0, 108.6, heightMax);
+                sprite3.ScaleVec(easingEnd, hits - pD + speed, hits - pD + (speed * 2), 108.6, heightMax, 108.6, 0);
 
                 foreach (var hitobject in Beatmap.HitObjects)
                 {
-                    if ((hits != 0 || hits + (speed * 2) != 0) &&
-                    (hitobject.StartTime < hits - 5 || hits + (speed * 2) - 5 <= hitobject.StartTime))
+                    if ((hits - pD != 0 || hits - pD + (speed * 2) != 0) &&
+                    (hitobject.StartTime < hits - pD - 5 || hits - pD + (speed * 2) - 5 <= hitobject.StartTime))
                         continue;
 
-                    sprite3.Color(hits, hits + speed, hitobject.Color, hitobject.Color);
+                    sprite3.Color(hits - pD, hits - pD + speed, hitobject.Color, hitobject.Color);
                 }
             }
         }
