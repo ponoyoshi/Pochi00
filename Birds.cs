@@ -217,26 +217,39 @@ namespace StorybrewScripts
                     {
                         if (RandomScale)
                         {
-                            if (ScaleMin == ScaleMax && ScaleMin != 1)
+                            if (ScaleMin != ScaleMax) 
                             {
-                                sprite.ScaleVec(i, ScaleMin, ScaleMin);
+                                if (RandomScale) 
+                                {
+                                    if (ScaleMin == ScaleMax && ScaleMin != 1)
+                                        sprite.ScaleVec(i, ScaleMin, ScaleMin);
+
+                                    var loopcount = RealTravelTime / (FlipInterval*2);
+                                    //Log($"Required loops for perfect fit: {(float)RealTravelTime / (FlipInterval*2)}");
+
+                                    sprite.ScaleVec(i, RandomScaling, RandomScaling);
+                                    sprite.StartLoopGroup(i, loopcount);
+                                    sprite.ScaleVec(OsbEasing.In, 0, FlipInterval, RandomScaling - 0.005, RandomScaling, 0, RandomScaling / 2);
+                                    sprite.ScaleVec(OsbEasing.Out, FlipInterval, FlipInterval * 2, 0, RandomScaling / 2, RandomScaling - 0.005, RandomScaling);
+                                    sprite.EndGroup();
+        
+                                    sprite.ScaleVec(OsbEasing.In, i + FlipInterval * 2 * loopcount, i + RealTravelTime, RandomScaling - 0.005, RandomScaling, 0, RandomScaling / 2); // Workaround to prevent the sprite stopping
+                                    } 
+                                    else 
+                                    {
+                                        sprite.ScaleVec(i, ScaleMin, ScaleMax);
+
+                                        if (ScaleMin == ScaleMax && ScaleMin != 1)
+                                            sprite.ScaleVec(i, ScaleMin, ScaleMin);
+                                    }
+                                }
                             }
-
-                            sprite.ScaleVec(i, RandomScaling, RandomScaling);
-                            sprite.StartLoopGroup(i, EndTime - StartTime / 2);
-                            sprite.ScaleVec(OsbEasing.In, 0, Random(FlipInterval, FlipInterval), RandomScaling - 0.005, RandomScaling, 0, RandomScaling / 2);
-                            sprite.ScaleVec(OsbEasing.Out, Random(FlipInterval, FlipInterval), Random(FlipInterval, FlipInterval) * 2, 0, RandomScaling / 2, RandomScaling - 0.005, RandomScaling);
-                            sprite.EndGroup();
-                        }
-
-                        else
-                        {
-                            sprite.ScaleVec(i, ScaleMin, ScaleMax);
-
-                            if (ScaleMin == ScaleMax && ScaleMin != 1)
+                            else
                             {
-                                sprite.ScaleVec(i, ScaleMin, ScaleMin);
-                            }
+                                sprite.ScaleVec(i, ScaleMin, ScaleMax);
+
+                                if (ScaleMin == ScaleMax && ScaleMin != 1)
+                                    sprite.ScaleVec(i, ScaleMin, ScaleMin);
                         }
                     }
                 }

@@ -151,7 +151,7 @@ namespace StorybrewScripts
             {
                 foreach(var time in linesTimes)
                 {
-                    if(hitobject.StartTime >= time - 5 && hitobject.StartTime <= time + 5)
+                    if(hitobject.StartTime >= time + 10 - 5 && hitobject.StartTime <= time + 10 + 5)
                     {
                         particleManager.GenerateLinesPlane(time, hitobject.Position, Random(0,10) > 5 ? true : false);
                     }
