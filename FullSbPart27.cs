@@ -20,7 +20,8 @@ namespace StorybrewScripts
             Background();
             Butterflies();
             Circles();
-            Flares();
+            Flares(444543, 465877);
+            Flares(473877, 497877);
         }
 
         public void PianoHighlights()
@@ -243,13 +244,11 @@ namespace StorybrewScripts
             }
         }
 
-        public void Flares()
+        public void Flares(int startTime, int endTime)
         {
             var sprite = GetLayer("").CreateSprite("sb/flare.jpg", OsbOrigin.Centre);
             var sprite2 = GetLayer("").CreateSprite("sb/flare2.jpg", OsbOrigin.TopLeft);
 
-            var startTime = 444543;
-            var endTime = 465877;
             var Beat = Beatmap.GetTimingPointAt(startTime).BeatDuration;
             var Fade = 0.8;
 
