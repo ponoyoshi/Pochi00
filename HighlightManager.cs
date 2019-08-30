@@ -30,12 +30,17 @@ namespace StorybrewScripts
             // Section 4
             GenerateKiaiHightlight(81345, 92011);
             GenerateBeam(412543, 423210);
+            GenerateRing(8, 113360, 124026, "sb/cf.png", 0.5f, 0.8f, 1000, 1, OsbEasing.OutExpo, true);
+
 
             /* GenerateBeam(new int[]{
                 81345, 86678, 88011, 89345, 90678, 91011, 91345, 91678, 92011, 82011, 82678, 83345, 83678, 84011
             });*/
 
             GenerateBeam(81345, 92011);
+            GenerateKiaiHightlight(484555, 495222);
+            GeneratePiano(484555, 495222);
+            
 
             // Section 7
 
@@ -66,21 +71,14 @@ namespace StorybrewScripts
 
             //Section 23
             List<double> t23 = new List<double>();
-            for(double i23 = 380543; i23 < 401877; i23 += Beatmap.GetTimingPointAt(380543).BeatDuration * 1.5f)
-            {
-                t23.Add(i23);
-            }
             foreach(var hitobject in Beatmap.HitObjects)
             {
-                foreach(var time in t23)
-                {
-                    if(hitobject.StartTime > time - 10 && hitobject.StartTime < time + 10)
-                    {
-                        GenerateCircle(hitobject.StartTime, hitobject.Position);
-                    }
-                }
+                if(hitobject.StartTime > 380555 && hitobject.StartTime < 401889)
+                    GenerateCircle(hitobject.StartTime, hitobject.Position);
             }
 
+            GenerateKiaiHightlight(189360, 200026);
+            GenerateRing(8, 189360, 200026, "sb/cf.png", 0.5f, 0.8f, 1000, 1, OsbEasing.OutExpo, true);
         }
         public void GeneratePiano(int startTime, int endTime)
         {
@@ -242,9 +240,10 @@ namespace StorybrewScripts
         }
         private void GenerateCircle(double startTime, Vector2 position)
         {
+            var scaleY = Random(0.5, 1.5);
             var sprite = GetLayer("").CreateSprite("sb/c2.png", OsbOrigin.Centre, position);
             sprite.Fade(startTime, startTime + 1000, 0.5, 0);
-            sprite.ScaleVec(OsbEasing.OutExpo, startTime, startTime + 500, 0, position.Y/5000, position.Y/1000, position.Y/5000);
+            sprite.ScaleVec(OsbEasing.OutExpo, startTime, startTime + 500, 0, position.Y/5000*scaleY, position.Y/1000*scaleY, position.Y/5000*scaleY);
         }
     }
 }

@@ -32,7 +32,7 @@ public class ParticleManager
             sprite.Additive(startTime, startTime + particleDuration);
         }
     }
-    public void GenerateFog(int startTime, int endTime, int posY, int stroke, int quantity, string layer = "PARTICLES")
+    public void GenerateFog(int startTime, int endTime, int posY, int stroke, int quantity, Color4 color, string layer = "PARTICLES")
     {
         for(int i = 0; i < quantity; i++)
         {
@@ -54,7 +54,7 @@ public class ParticleManager
                 particle.Fade(startTime, startTime + 1000, 0, 1);
                 particle.Fade(endTime, endTime + 1000, 1, 0);
                 particle.Scale(startTime, generator.Random(0.008, 0.015));
-                particle.Color(startTime, Color4.White);
+                particle.Color(startTime, color);
                 particle.Additive(startTime, endTime);
             }
 
@@ -62,6 +62,7 @@ public class ParticleManager
             sprite.MoveX(startTime, startTime + firstTimeDuration, posX, endX);
             sprite.Fade(startTime, startTime + 1000, 0, fade);
             sprite.Fade(endTime, endTime + 1000, fade, 0);
+            sprite.Color(startTime, color);
             sprite.Scale(startTime, generator.Random(0.4, 1));
                 
             elementStartTime += firstTimeDuration;
@@ -208,8 +209,8 @@ public class ParticleManager
                 
             sprite.Move(OsbEasing.InOutSine, i, i + duration, startPos, endPos);
             sprite.Scale(i, generator.Random(0.5, 1));
-            sprite.Fade(i, i + 1000, 0, 0.1);
-            sprite.Fade(i + duration - 1000, i + duration, 0.1, 0);
+            sprite.Fade(i, i + 1000, 0, 0.01);
+            sprite.Fade(i + duration - 1000, i + duration, 0.01, 0);
             sprite.Additive(i, i + duration);   
         }
     }

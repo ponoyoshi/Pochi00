@@ -40,9 +40,9 @@ namespace StorybrewScripts
 
             ParticleManager particleManager = new ParticleManager(this);
             particleManager.GenerateFairy(11, new Vector2(320, 240));
-            particleManager.GenerateFog(30011, 70678, 320, 50, 20, "FOGBACK");
-            particleManager.GenerateFog(30011, 70678, 400, 50, 20, "FOGFRONT");
-            particleManager.GenerateFog(81345, 93345, 320, 100, 50, "FOGFRONT");
+            particleManager.GenerateFog(30011, 70678, 320, 50, 20, Color4.White, "FOGBACK");
+            particleManager.GenerateFog(30011, 70678, 400, 50, 20, Color4.White, "FOGFRONT");
+            particleManager.GenerateFog(81345, 93345, 320, 100, 50, Color4.White, "FOGFRONT");
 
             var slicedCircle = GetLayer("").CreateSprite("sb/cs.png");
             slicedCircle.Fade(11, 2678, 0, 0.3);
@@ -95,8 +95,8 @@ namespace StorybrewScripts
             transitionManager.TransitionLines(166345, 166678, 167678);
             shapeManager.GenerateEmptySquare(new Vector2(320, 240), 166678, 168011, 0, 100, false, OsbEasing.OutExpo);
 
-            particleManager.GenerateFog(168011, 200011, 320, 50, 20, "FOGFRONT");
-            particleManager.GenerateFog(168011, 200011, 400, 50, 20, "FOGTOP");
+            particleManager.GenerateFog(168011, 200011, 320, 50, 20, Color4.White, "FOGFRONT");
+            particleManager.GenerateFog(168011, 200011, 400, 50, 20, Color4.White, "FOGTOP");
 
 
             //3dot
@@ -167,16 +167,16 @@ namespace StorybrewScripts
             flatBackground.GenerateGradientBackground(315971, 332523, new Color4(0.1f, 0.1f, 0.1f, 1), Color4.Black);
             particleManager.GenerateCircleParticles(203420, 216661, 229902, 236523);
 
-            particleManager.GenerateFog(332523, 357351, 400, 20, 20, "FOGFRONT");
-            particleManager.GenerateFog(332523, 357351, 420, 20, 20);
+            particleManager.GenerateFog(332523, 357351, 400, 20, 20, Color4.White, "FOGFRONT");
+            particleManager.GenerateFog(332523, 357351, 420, 20, 20, Color4.White);
             flatBackground.GenerateFlash(332523, 3000);
             flatBackground.GenerateFlash(345764, 2000);
 
             particleManager.GenerateRain(380543, 423210, 20);
-
+        
             flatBackground.GenerateLinearGradient(380543, 391210, 401543, 401877, new Color4(.1f, .1f, .1f, 1), Color4.Black);
             flatBackground.GenerateFlash(401877, 2000);
-            particleManager.GenerateFog(401877, 423210, 450, 30, 20);
+            particleManager.GenerateFog(401877, 423210, 450, 30, 20, Color4.White);
             shapeManager.GenerateEmptySquare(new Vector2(320, 240), 421877, 423210, 500, 0, true, OsbEasing.InExpo);
             shapeManager.GenerateEmptySquare(new Vector2(320, 240), 423210, 424543, 0, 300, false, OsbEasing.OutExpo);
             shapeManager.GenerateEmptySquare(new Vector2(320, 240), 401543, 401877, 0, 300, false, OsbEasing.OutExpo);
@@ -224,6 +224,8 @@ namespace StorybrewScripts
 
             particleManager.GenerateParticlesMoveUp(527210, 543210);
 
+            
+
             GearTransition();
 
             var gear0 = GetLayer("FOGBACK").CreateSprite("sb/g/g6.png");
@@ -248,15 +250,20 @@ namespace StorybrewScripts
 
 
             //CREDITS
-            textManager.GenerateTextVerticlalLetter("[ BEATMAP ]", 629877, 635210, new Vector2(320, 220), 0.15f, "Italic");
-            textManager.GenerateTextVerticlalLetter("PROFESSIONALBOX", 629877, 635210, new Vector2(320, 240), 0.15f, "Italic");
-            textManager.GenerateTextVerticlalLetter("[ STORYBOARD ]", 629877, 635210, new Vector2(320, 270), 0.15f, "Italic");
-            textManager.GenerateTextVerticlalLetter("TOCHI & PONO", 629877, 635210, new Vector2(320, 290), 0.15f, "Italic");
+            textManager.GenerateTextVerticlalLetter("[ BEATMAP ]", 629877, 635210, new Vector2(320, 200), 0.15f, "Italic");
+            textManager.GenerateTextVerticlalLetter("PROFESSIONALBOX", 629877, 635210, new Vector2(320, 220), 0.15f, "Italic");
+            textManager.GenerateTextVerticlalLetter("[ STORYBOARD ]", 629877, 635210, new Vector2(320, 250), 0.15f, "Italic");
+            textManager.GenerateTextVerticlalLetter("TOCHI & PONO", 629877, 635210, new Vector2(320, 270), 0.15f, "Italic");
+            textManager.GenerateTextVerticlalLetter("[ HITSOUND ]", 629877, 635210, new Vector2(320, 300), 0.15f, "Italic");
+            textManager.GenerateTextVerticlalLetter("THZZ", 629877, 635210, new Vector2(320, 320), 0.15f, "Italic");
 
 
             particleManager.GenerateCircularMovingParticles(302833, 315971);
             particleManager.GenerateRain(587222, 608556, 20);
-            particleManager.GenerateFog(444555, 465889, 400, 50, 10);
+            particleManager.GenerateFog(444555, 465889, 400, 50, 10, Color4.Orange);
+
+            transitionManager.TransitionLines(628556, 629222, 631222);
+
         }
         private void GenerateFairies(int[] times, ParticleManager manager)
         {
