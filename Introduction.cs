@@ -261,6 +261,7 @@ namespace StorybrewScripts
             particleManager.GenerateCircularMovingParticles(302833, 315971);
             particleManager.GenerateRain(587222, 608556, 20);
             particleManager.GenerateFog(444555, 465889, 400, 50, 10, Color4.Orange);
+            particleManager.GenerateFog(473889, 496555, 400, 50, 10, Color4.Orange);
 
             transitionManager.TransitionLines(628556, 629222, 631222);
 
