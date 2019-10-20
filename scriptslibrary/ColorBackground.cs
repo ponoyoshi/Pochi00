@@ -22,7 +22,7 @@ public class FlatBackground
     {
         var sprite = generator.GetLayer("FOREGROUND").CreateSprite("sb/p.png");
         sprite.ScaleVec(startTime, 854, 480);
-        sprite.Fade(startTime, startTime + duration, 1, 0);
+        sprite.Fade(OsbEasing.OutSine, startTime, startTime + duration, 0.8, 0);
         sprite.Additive(startTime, startTime + duration);
     }
     public void GenerateGradientBackground(int startTime, int endTime, Color4 color1, Color4 color2)

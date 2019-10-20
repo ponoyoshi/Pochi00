@@ -86,7 +86,7 @@ namespace StorybrewScripts
 
             //3rd BG
 
-            flatBackground.GenerateFlash(145345, 1000);
+            flatBackground.GenerateFlash(145360, 800);
             flatBackground.GenerateFlash(28011, 1000);
             flatBackground.GenerateFlash(168011, 1000);
             flatBackground.GenerateFlash(189345, 1000);
@@ -133,7 +133,7 @@ namespace StorybrewScripts
                 159678, 146345, 146511, 155345
             };
 
-            flatBackground.GenerateFlash(156011, 5000);
+            flatBackground.GenerateFlash(156011, 1000);
             flatBackground.GenerateFlash(178678, 2000);
             flatBackground.GenerateFlash(195011, 1000);
             flatBackground.GenerateFlash(484543, 1000);
@@ -202,14 +202,13 @@ namespace StorybrewScripts
             flatBackground.GenerateGradientBackground(423210, 433877, new Color4(.1f, .1f, .1f, 1), Color4.Black);
             flatBackground.GenerateGradientBackground(433877, 444543, new Color4(.15f, .12f, .1f, 1), Color4.Black);
 
-            textManager.GenerateTextVerticlalLetter("I am alone", 359006, 364799, new Vector2(320, 230), 0.15f, "Italic");
-            textManager.GenerateTextVerticlalLetter("love passes by", 359833, 364799, new Vector2(320, 250), 0.15f, "Italic");
+            textManager.GenerateTextVerticlalLetter("One more time I give my all,", 359006, 364799, new Vector2(320, 230), 0.15f, "Italic");
+            textManager.GenerateTextVerticlalLetter("Reminiscing on the past.", 359833, 364799, new Vector2(320, 250), 0.15f, "Italic");
 
-            textManager.GenerateTextVerticlalLetter("crying tears,", 365626, 370259, new Vector2(320, 230), 0.15f, "Italic");
-            textManager.GenerateTextVerticlalLetter("I wonder why", 366454, 370259, new Vector2(320, 250), 0.15f, "Italic");
+            textManager.GenerateTextVerticlalLetter("Even after the curtain fall,", 365626, 370259, new Vector2(320, 230), 0.15f, "Italic");
+            textManager.GenerateTextVerticlalLetter("The memories will last.", 366454, 370259, new Vector2(320, 250), 0.15f, "Italic");
 
-            textManager.GenerateTextVerticlalLetter("I cannot find", 371215, 376173, new Vector2(320, 230), 0.15f, "Italic");
-            textManager.GenerateTextVerticlalLetter("what others found.", 371782, 376173, new Vector2(320, 250), 0.15f, "Italic");
+            textManager.GenerateTextVerticlalLetter("Thank you - I had a blast.", 371215, 376173, new Vector2(320, 240), 0.15f, "Italic");
 
             shapeManager.GenerateEmptySquare(new Vector2(320, 240), 379450, 380543, 500, 0, true, OsbEasing.InExpo);
             flatBackground.GenerateColorBackground(359006, 380543, new Color4(0.02f, 0.05f, 0.05f, 1));
@@ -255,7 +254,7 @@ namespace StorybrewScripts
             textManager.GenerateTextVerticlalLetter("[ STORYBOARD ]", 629877, 635210, new Vector2(320, 250), 0.15f, "Italic");
             textManager.GenerateTextVerticlalLetter("TOCHI & PONO", 629877, 635210, new Vector2(320, 270), 0.15f, "Italic");
             textManager.GenerateTextVerticlalLetter("[ HITSOUND ]", 629877, 635210, new Vector2(320, 300), 0.15f, "Italic");
-            textManager.GenerateTextVerticlalLetter("THZZ", 629877, 635210, new Vector2(320, 320), 0.15f, "Italic");
+            textManager.GenerateTextVerticlalLetter("THZZ & AZER", 629877, 635210, new Vector2(320, 320), 0.15f, "Italic");
 
 
             particleManager.GenerateCircularMovingParticles(302833, 315971);
